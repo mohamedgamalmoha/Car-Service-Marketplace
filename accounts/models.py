@@ -60,6 +60,9 @@ class CustomerProfile(models.Model):
     created = models.DateTimeField(auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True, null=True)
 
+    def __str__(self):
+        return self.name
+
     @property
     def name(self):
         return self.user.get_full_name()
