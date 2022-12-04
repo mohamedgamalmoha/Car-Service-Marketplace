@@ -1,11 +1,11 @@
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
-from django.views.generic import CreateView, UpdateView, DetailView
-from django.contrib.auth import login
-from django.contrib.auth.forms import SetPasswordForm
+from django.views.generic import CreateView, UpdateView, DetailView, FormView
 from django.contrib.auth.backends import get_user_model
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import login, update_session_auth_hash
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.contrib.messages.views import SuccessMessageMixin
 
 from .mixins import CustomerAuthMixIn
@@ -19,12 +19,17 @@ URL_REDIRECT = '/'
 
 class LogInView(SuccessMessageMixin, LoginView):
     template_name = 'accounts/login.html'
-    success_url = reverse_lazy(URL_REDIRECT)
+    success_url = reverse_lazy('accounts:profile')
     redirect_authenticated_user = True
     success_message = 'Logged in successfully'
     extra_context = {
         'title': 'LogIn'
     }
+
+    def get_success_url(self):
+        if self.request.user.role == UserRole.CUSTOMER:
+            return self.success_url
+        return reverse_lazy('admin:index')
 
 
 class RegistrationView(SuccessMessageMixin, CreateView):
@@ -76,26 +81,9 @@ class UpdateCustomerProfileView(SuccessMessageMixin, CustomerAuthMixIn, UpdateVi
         return get_object_or_404(self.model, user=self.request.user)
 
 
-class UserChangePasswordView(SuccessMessageMixin, UpdateView):
-    model = User
-    form_class = SetPasswordForm
+class UserChangePasswordView(SuccessMessageMixin, PasswordChangeView):
+    form_class = PasswordChangeForm
     template_name = 'accounts/user_change_password.html'
     success_message = 'Password has been updated successfully'
     extra_context = {'title': 'Change password'}
-    success_url = reverse_lazy('affairs:home')
-
-    def get_object(self):
-        return self.request.user
-
-    def get_form_kwargs(self):
-        kwargs = {
-            'prefix': self.get_prefix(),
-            'initial': self.get_initial(),
-        }
-        if self.request.method in ('POST', 'PUT'):
-            kwargs.update({
-                'data': self.request.POST,
-                'files': self.request.FILES,
-            })
-        kwargs.update({'user': self.object})
-        return kwargs
+    success_url = reverse_lazy('home')
