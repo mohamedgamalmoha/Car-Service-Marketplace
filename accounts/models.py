@@ -1,9 +1,9 @@
+from django.utils.timezone import datetime
 from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import AbstractUser, UserManager
-
 
 PhoneNumberValidator = RegexValidator(r'^[0-9]{11}$', 'Invalid Phone Number')
 
@@ -57,10 +57,21 @@ class CustomerProfile(models.Model):
     address = models.CharField("Address", max_length=150, blank=True, null=True)
     gender = models.CharField("Gender", max_length=1, choices=UserGender.choices)
     date_of_birth = models.DateField("Date Of Birth", blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True, null=True)
+    updated = models.DateTimeField(auto_now=True, null=True)
 
     @property
     def name(self):
         return self.user.get_full_name()
+
+    @property
+    def age(self):
+        birthdate = self.date_of_birth
+        if birthdate is None:
+            return None
+        today = datetime.today()
+        ag = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
+        return ag
 
 
 @receiver(post_save, sender=Customer)

@@ -10,7 +10,7 @@ class CustomerProfileInlineAdmin(admin.TabularInline):
 
 
 class CustomerProfileAdmin(admin.ModelAdmin):
-    list_display = ["name", "gender"]
+    list_display = ["name", "age", "gender"]
     list_filter = ["gender", ]
     list_per_page = 20
 
