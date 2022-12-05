@@ -15,7 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+
 from .views import HomePage
+
 
 urlpatterns = [
     path('', HomePage.as_view(), name='home'),
@@ -23,4 +27,9 @@ urlpatterns = [
     path('info/', include('info.urls', namespace="info")),
     path('auth/', include('accounts.urls', namespace="accounts")),
     path('workshop/', include('workshop.urls', namespace="workshop")),
+    path('car/', include('car.urls', namespace="car")),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

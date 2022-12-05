@@ -7,7 +7,30 @@
 <body>
 <h4>Hello!!, {{ customer.name }}</h4><br>
 <a href="{% url 'accounts:logout' %}">Logout</a>
-<a href="{% url 'accounts:profile_update' %}">Update profile</a>
+<a href="{% url 'accounts:profile_update' %}">Update Profile</a>
+<a href="{% url 'car:create' %}">Add Car</a>
 <a href="{% url 'accounts:change_password' %}">Change Password</a>
+
+
+<table>
+    <tr>
+        <th>Brand</th>
+        <th>Model</th>
+        <th>Car Number</th>
+        <th>Model Year</th>
+        <th>Color</th>
+        <th>Edit</th>
+    </tr>
+    {% for car in request.user.profile.cars.all %}
+    <tr>
+        <td>{{ car.brand }}</td>
+        <td>{{ car.model }}</td>
+        <td>{{ car.number }}</td>
+        <td>{{ car.model_year }}</td>
+        <td><a href="{% url 'car:update' car.id %}">edit</a></td>
+    </tr>
+   {% endfor %}
+</table>
+
 </body>
 </html>

@@ -39,10 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Third party application
+    'colorfield',
+
     # Custom Apps
     'accounts',
     'workshop',
     'info',
+    'car'
 ]
 
 MIDDLEWARE = [
