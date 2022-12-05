@@ -42,6 +42,8 @@ INSTALLED_APPS = [
 
     # Third party application
     'colorfield',
+    'django_filters',
+    'ckeditor',
 
     # Custom Apps
     'accounts',
@@ -290,4 +292,12 @@ JAZZMIN_SETTINGS = {
     "changeform_format_overrides": {"auth.user": "collapsible", "auth.group": "vertical_tabs"},
     # Add a language dropdown into the admin
     # "language_chooser": True,
+}
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': '100%',
+        'width': '100%',
+    },
 }
