@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block subtitle %} {{ title }} {% endblock %}
+
+{% load static %}
+
+{% block content %}
+    <form method="POST" class="contact-form" style="width:65%; align:center; margin: 35px auto 0;">
+       <h4 style="text-align:center;">{{ title }}</h4>
+       {% csrf_token %}
+       {{ form.as_p }}
+       <div class="d-grid" style="margin-top:10px;"><button class="btn btn-dark btn-lg " id="submitButton" type="submit">Delete</button></div>
+    </form>
+{% endblock %}

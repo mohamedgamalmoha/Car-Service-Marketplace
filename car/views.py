@@ -1,5 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from .models import Car
 from .forms import CarForm
@@ -27,6 +27,19 @@ class UpdateCarView(CustomerAuthMixIn, UpdateView):
     success_url = reverse_lazy('accounts:profile')
     extra_context = {
         'title': 'Update Car'
+    }
+
+    def get_queryset(self):
+        return self.model.objects.filter(customer=self.request.user)
+
+
+class DeleteCarView(CustomerAuthMixIn, DeleteView):
+    model = Car
+    form_class = CarForm
+    template_name = "car/delete.html"
+    success_url = reverse_lazy('accounts:profile')
+    extra_context = {
+        'title': 'Delete Car'
     }
 
     def get_queryset(self):
