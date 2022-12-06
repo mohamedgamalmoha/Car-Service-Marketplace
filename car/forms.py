@@ -7,4 +7,4 @@ class CarForm(forms.ModelForm):
 
     class Meta:
         model = Car
-        exclude = ('owner', 'created', 'updated')
+        exclude = ('customer', 'created', 'updated')

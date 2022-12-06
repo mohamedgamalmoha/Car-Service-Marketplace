@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.safestring import mark_safe
 from colorfield.fields import ColorField
 
-from accounts.models import CustomerProfile
+from accounts.models import Customer
 
 
 class Brand(models.Model):
@@ -20,7 +20,7 @@ class Brand(models.Model):
 
 
 class Car(models.Model):
-    owner = models.ForeignKey(CustomerProfile, on_delete=models.SET_NULL, related_name='cars', null=True)
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, related_name='cars', null=True)
     brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, related_name='cars', null=True)
     model = models.CharField("Model", max_length=40, blank=True, null=True)
     number = models.CharField("Car Number", max_length=40, blank=True, null=True)

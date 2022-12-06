@@ -16,7 +16,7 @@ class CreateCarView(CustomerAuthMixIn, CreateView):
     }
 
     def form_valid(self, form):
-        form.instance.owner = self.request.user.profile
+        form.instance.customer = self.request.user
         return super().form_valid(form)
 
 
@@ -30,4 +30,4 @@ class UpdateCarView(CustomerAuthMixIn, UpdateView):
     }
 
     def get_queryset(self):
-        return self.model.objects.filter(owner=self.request.user.profile)
+        return self.model.objects.filter(customer=self.request.user)
