@@ -57,7 +57,7 @@ class WorkShop(models.Model):
         return self.name
 
     def avg_rate(self):
-        return self.rates.aggregate(models.Avg('value'))
+        return self.rates.aggregate(models.Avg('value')).get('value__avg', None)
 
     def count_rate(self):
         return self.rates.count()
