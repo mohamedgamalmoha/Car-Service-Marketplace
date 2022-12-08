@@ -45,10 +45,14 @@ class CustomerProfileInlineAdmin(admin.TabularInline):
 
 
 class CustomerProfileAdmin(admin.ModelAdmin):
-    list_display = ["name", "age", "gender", "phone_number"]
+    list_display = ["name", "age", "gender", "phone_number", 'created', 'updated']
     list_filter = ['gender', AgeCustomerListFilter]
     search_fields = ('user__first_name', 'user__last_name')
     list_per_page = 20
+    fieldsets = (
+        (None, {"fields": ('name', "user", "phone_number", 'city', 'state', 'address', 'gender', 'age', 'date_of_birth', 'image', 'show_image')}),
+    )
+    readonly_fields = ('show_image', 'name', 'age')
 
 
 class CustomUserAdmin(UserAdmin):

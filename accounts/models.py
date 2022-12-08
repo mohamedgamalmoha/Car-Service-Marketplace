@@ -1,9 +1,11 @@
-from django.utils.timezone import datetime
 from django.db import models
-from django.dispatch import receiver
 from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.utils.timezone import datetime
+from django.utils.safestring import mark_safe
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import AbstractUser, UserManager
+
 
 PhoneNumberValidator = RegexValidator(r'^[0-9]{11}$', 'Invalid Phone Number')
 
@@ -75,6 +77,10 @@ class CustomerProfile(models.Model):
         today = datetime.today()
         ag = today.year - birthdate.year - ((today.month, today.day) < (birthdate.month, birthdate.day))
         return ag
+
+    def show_image(self, width: int = 150, height: int = 100):
+        url = self.image.url
+        return mark_safe(f'<a href="{url}"> <img src="{url}" width="{width}" height={height} /></a>')
 
 
 @receiver(post_save, sender=Customer)
