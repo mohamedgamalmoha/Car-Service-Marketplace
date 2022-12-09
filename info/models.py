@@ -89,3 +89,18 @@ class PrivacyPolicy(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ContactUs(models.Model):
+    first_name = models.CharField(max_length=120, null=True)
+    last_name = models.CharField(max_length=120, null=True)
+    email = models.EmailField()
+    phone_number = models.CharField(max_length=11, validators=[PhoneNumberValidator, ], null=True)
+    subject = models.CharField(max_length=250)
+    message = models.TextField()
+    created = models.DateTimeField(auto_now_add=True, null=True)
+    updated = models.DateTimeField(auto_now=True, null=True)
+
+    class Meta:
+        verbose_name = 'Contact Us'
+        verbose_name_plural = 'Contact Us'
