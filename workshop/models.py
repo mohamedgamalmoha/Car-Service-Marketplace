@@ -45,9 +45,10 @@ class WorkShop(models.Model):
     whatsapp = models.CharField("Whatsapp number", max_length=11, validators=[PhoneNumberValidator, ])
     brands = models.ManyToManyField(Brand)
     services = models.ManyToManyField(Service)
-    map_link = models.TextField(null=True, blank=True, validators=[validate_map_link])
     image = models.ImageField(upload_to='workshops/images/', blank=True, null=True)
     is_active = models.BooleanField("Activate", default=True)
+    open_at = models.TimeField(null=True)
+    close_at = models.TimeField(null=True)
     created = models.DateTimeField(auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True, null=True)
 
@@ -71,6 +72,24 @@ class WorkShop(models.Model):
     def show_image(self, width: int = 150, height: int = 100):
         url = self.image.url
         return mark_safe(f'<a href="{url}"> <img src="{url}" width="{width}" height={height} /></a>')
+
+
+class WorkShopLocation(models.Model):
+    workshop = models.ForeignKey(WorkShop,  on_delete=models.CASCADE, null=True, related_name='locations')
+    link = models.TextField(null=True, blank=True, validators=[validate_map_link])
+    address = models.CharField(max_length=400)
+
+    def show_map(self):
+        return mark_safe(f"{self.link}")
+
+
+class WorkShopVideo(models.Model):
+    title = models.CharField(max_length=150)
+    workshop = models.ForeignKey(WorkShop,  on_delete=models.CASCADE, null=True, related_name='videos')
+    link = models.URLField()
+
+    def show_link(self):
+        return mark_safe(f"<a href='{self.link}'>{self.title}</a>")
 
 
 class Rate(models.Model):

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Service, WorkShop, Rate, Comment, ReportIssue
+from .models import Service, WorkShop, WorkShopLocation, WorkShopVideo, Rate, Comment, ReportIssue
 
 
 class RateInlineAdmin(admin.TabularInline):
@@ -18,7 +18,6 @@ class CommentInlineAdmin(admin.TabularInline):
     extra = 0
     min_num = 0
     max_num = 0
-    can_delete = False
     fields = ('customer', 'title', 'comment',  'created', 'updated')
     readonly_fields = ('customer', 'created', 'updated')
 
@@ -33,6 +32,24 @@ class ReportIssueInlineAdmin(admin.TabularInline):
     readonly_fields = ('customer', 'title', 'description',  'suggestion', 'date_of_issue', 'attachment')
 
 
+class WorkShopLocationInlineAdmin(admin.TabularInline):
+    model = WorkShopLocation
+    extra = 1
+    min_num = 1
+    max_num = 4
+    fields = ('link', 'address', 'show_map', )
+    readonly_fields = ('show_map', )
+
+
+class WorkShopVideoInlineAdmin(admin.TabularInline):
+    model = WorkShopVideo
+    extra = 1
+    min_num = 0
+    max_num = 4
+    fields = ('title', 'link', 'show_link', )
+    readonly_fields = ('show_link', )
+
+
 class ServiceAdmin(admin.ModelAdmin):
     list_display = ('name', 'service_type', 'created', 'updated')
     list_filter = ('service_type', )
@@ -42,13 +59,15 @@ class ServiceAdmin(admin.ModelAdmin):
 class WorkShopAdmin(admin.ModelAdmin):
     list_display = ('name', 'avg_rate', 'count_rate', 'count_comment', 'count_reports', 'created', 'updated')
     inlines = (
+        WorkShopLocationInlineAdmin,
+        WorkShopVideoInlineAdmin,
         RateInlineAdmin,
         CommentInlineAdmin,
         ReportIssueInlineAdmin
     )
     readonly_fields = ('show_image', 'avg_rate', 'count_rate', 'count_comment', 'count_reports')
     fieldsets = (
-        ('Main Info', {"fields": ('name', 'description', ('phone_number', 'whatsapp'), 'brands', 'services', 'map_link')}),
+        ('Main Info', {"fields": ('name', 'description', ('phone_number', 'whatsapp'), 'brands', 'services', )}),
         ('Image', {"fields": ("image", "show_image")}),
         ('Statistics', {"fields": ('avg_rate', 'count_rate', 'count_comment', 'count_reports')}),
     )
