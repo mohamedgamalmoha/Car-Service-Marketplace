@@ -7,7 +7,8 @@ class MainInfo(models.Model):
     instagram = models.URLField('Instagram link')
     twitter = models.URLField('Twitter link')
     telegram = models.URLField('Telegram link', blank=True, null=True)
-
+    open_at = models.TimeField(null=True)
+    close_at = models.TimeField(null=True)
     mail = models.EmailField('Web email')
     whatsapp = models.CharField("Whatsapp number", max_length=11, validators=[PhoneNumberValidator, ])
 
@@ -17,6 +18,10 @@ class MainInfo(models.Model):
 
     def __str__(self):
         return self.mail
+
+    @property
+    def whatsapp_link(self):
+        return f"https://wa.me/+2{self.whatsapp}"
 
 
 class FAQs(models.Model):

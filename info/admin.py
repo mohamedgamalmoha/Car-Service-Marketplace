@@ -3,7 +3,8 @@ from django.contrib import admin
 from .models import MainInfo, Works, AboutUs, TermsOfService, CookiePolicy, PrivacyPolicy, FAQs, ContactUs
 
 
-class ModelAdmin(admin.ModelAdmin):
+class MainInfoAdmin(admin.ModelAdmin):
+    readonly_fields = ('whatsapp_link', )
 
     def has_delete_permission(self, request, obj=None):
         return False
@@ -25,5 +26,5 @@ admin.site.register(AboutUs)
 admin.site.register(CookiePolicy)
 admin.site.register(PrivacyPolicy)
 admin.site.register(TermsOfService)
-admin.site.register(MainInfo, ModelAdmin)
+admin.site.register(MainInfo, MainInfoAdmin)
 admin.site.register(ContactUs, ContactUsAdmin)
