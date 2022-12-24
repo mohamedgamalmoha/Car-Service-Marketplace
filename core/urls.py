@@ -28,6 +28,7 @@ urlpatterns = [
     path('auth/', include('accounts.urls', namespace="accounts")),
     path('workshop/', include('workshop.urls', namespace="workshop")),
     path('car/', include('car.urls', namespace="car")),
+    path('booking/', include('booking.urls', namespace="booking"))
 ]
 
 if settings.DEBUG:
