@@ -26,7 +26,7 @@
                     {% csrf_token %}
                     <input type="hidden" name="workshop" value="{{ workshop.id }}">
                     <button class="px-2 py-1 border-0  bg-transparent" style="width: fit-content;" title="Edit Car" type="submit">
-                        <a onclick="this.parent.click()" title="Report this workshop"><i class="fa-sharp fa-solid fa-flag" style="color: #F40612;"></i></a>
+                        <a onclick="this.parent.click()" title="Report this workshop"><i class="fa-sharp fa-solid fa-flag" style="color: #F40612;">&nbsp; Report</i></a>
                     </button>
                 </form>
                 {% endif %}
