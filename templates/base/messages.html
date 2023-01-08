@@ -1,0 +1,11 @@
+{% if messages %}
+<!-- Messages Section -->
+<div class="container-fluid position-fixed d-flex justify-content-start align-items-end flex-column gap-1 alert-container">
+    {% for message in messages %}
+        <div class="alert">
+            <span class="close" onclick="this.parentElement.style.display='none';">&times;</span>
+             {{ message }}
+        </div>
+    {% endfor %}
+</div>
+{% endif %}

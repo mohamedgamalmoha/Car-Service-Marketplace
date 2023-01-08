@@ -1,1 +1,67 @@
 {% load static %}
+<!-- NavBar Section -->
+<nav class="navbar navbar-expand-lg navbar-dark py-3 border-bottom border-secondary">
+    <div class="container">
+        <a class="navbar-brand" href="#"><img src="{% static 'images/logo.png' %}" width="150" alt="logo" style="height: 100px; object-fit: contain"/></a>
+        <button class="navbar-toggler border-0" style="border: none; box-shadow: none" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon border-0"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav m-auto gap-md-4 gap-2 mb-3 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link fs-md-5 active" aria-current="page" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-md-5" href="{% url 'info:about_us' %}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-md-5" href="{% url 'blog:post_list' %}">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-md-5" href="{% url 'workshop:workshop_list' %}">WorkShops</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-md-5" href="{% url 'info:contact_us' %}">Contact Us</a>
+                </li>
+            </ul>
+            <div class="dropdown">
+                <button class="btn dropdown-toggle text-white shadow-none" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-user"></i>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark rounded-3" style="background-color: #222; border: 1px solid #F40612;" aria-labelledby="dropdownMenuButton1">
+                    {% if request.user.is_authenticated %}
+                    <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Log Out</a></li>
+                    {% if request.user.is_staff %}
+                    <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a></li>
+                    {% endif %}
+                    {% if request.user.profile %}
+                    <li><a class="dropdown-item" href="{% url 'accounts:profile' %}">Profile</a></li>
+                    {% endif %}
+                    {% else %}
+                    <li><a class="dropdown-item" href="{% url 'accounts:login' %}">Log In</a></li>
+                    <li><a class="dropdown-item" href="{% url 'accounts:registration' %}">Sign Up</a></li>
+                    {% endif %}
+                </ul>
+              </div>
+            <button class="search btn border-0 bg-transparent fs-5 text-white me-2 shadow-none" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <a href="#" class="text-decoration-none fw-bold px-4 py-2 rounded-3 primary-color text-white">Contact Us</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Search Section -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-3" style="background-color: #222; max-width: 600px;">
+            <div class="position-relative">
+                <input type="text" class="w-100 px-3 py-2 text-light bg-transparent rounded-3"
+                       style="border: 1px solid #F40612;" placeholder="Search Here">
+                <button class="btn border-0 bg-transparent position-absolute end-0 text-white fs-5 shadow-none">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
