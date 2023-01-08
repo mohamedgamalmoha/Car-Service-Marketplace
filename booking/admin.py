@@ -15,7 +15,7 @@ class DiscountAdmin(admin.ModelAdmin):
 
 class BookingAdmin(admin.ModelAdmin):
     display_list = ('customer', 'workshop', 'service', 'status', 'create_at', 'update_at')
-    list_filter = ('status', )
+    list_filter = ('status', 'commission_status', ('create_at', admin.DateFieldListFilter),)
 
 
 admin.site.register(Coupon, CouponAdmin)

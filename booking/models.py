@@ -5,6 +5,7 @@ from django.dispatch.dispatcher import receiver
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
+from car.models import Car
 from accounts.models import Customer
 from workshop.models import WorkShop, Service
 
@@ -18,7 +19,12 @@ class BookingStatus(models.TextChoices):
 
     @classmethod
     def customer_choices(cls):
-        return (cls.PLACED, 'PLACED'), (cls.FAILED, 'FAILED')
+        return (cls.PLACED, 'PLACED'), (cls.CANCELED, 'CANCELED')
+
+
+class BookingCommissionStatus(models.TextChoices):
+    Collected: str = 1, _("Collected")
+    NOT_Collected: str = 0, _("Not Collected")
 
 
 class DiscountType(models.TextChoices):
@@ -148,6 +154,8 @@ class Booking(models.Model):
                                  verbose_name=_('Workshop'))
     service = models.ForeignKey(Service, on_delete=models.CASCADE, null=True, related_name='bookings',
                                 verbose_name=_('Service'))
+    car = models.ForeignKey(Car, on_delete=models.CASCADE, null=True, related_name='bookings',
+                            verbose_name=_('Car'))
     discount = models.ForeignKey(Discount, related_name="bookings", on_delete=models.SET_NULL, null=True, blank=True,
                                  verbose_name=_('Discount'))
     coupon = models.ForeignKey(Coupon, related_name="bookings", null=True, blank=True, on_delete=models.SET_NULL,
@@ -156,8 +164,15 @@ class Booking(models.Model):
                               verbose_name=_('Booking Status'))
     estimated_price = models.DecimalField(decimal_places=2, max_digits=8, null=True, blank=True,
                                           verbose_name=_('Estimated Price'))
-    note = models.TextField(max_length=400, blank=True, null=True, verbose_name=_('Note'))
-    schedule_at = models.DateTimeField(verbose_name=_('Estimated Price'))
+    earned_amount = models.DecimalField(decimal_places=2, max_digits=8, null=True, blank=True, default=0,
+                                        verbose_name=_('Earned Amount'))
+    commission_status = models.CharField(max_length=50, choices=BookingCommissionStatus.choices, null=True,
+                                         default=BookingCommissionStatus.NOT_Collected, verbose_name=_('Commission Status'))
+    expense_amount = models.DecimalField(decimal_places=2, max_digits=8, null=True, blank=True, default=0,
+                                         verbose_name=_('Expense Amount'))
+    note = models.TextField(max_length=400, blank=True, null=True, verbose_name=_('Note'),
+                            help_text=_("Tell us more about car issues and parts that need to be maintained ...etc. "))
+    schedule_at = models.DateTimeField(verbose_name=_('Schedule At'), help_text=_('When would you like to book?'))
     create_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creation Date'))
     update_at = models.DateTimeField(auto_now=True, verbose_name=_('Update Date'))
 
@@ -167,6 +182,12 @@ class Booking(models.Model):
             raise ValidationError(
                 _('Workshop %(workshop) doesnt offer this services  %(service)'),
                 params={'workshop': self.workshop, 'service': self.service}
+            )
+        # if the car owner and customer are same
+        if self.car and (self.car not in self.customer.cars.all()):
+            raise ValidationError(
+                _('Car owner %(car_owner) and customer must be same person'),
+                params={'car_owner': self.car.customer, 'customer': self.customer}
             )
         # if the discount is right for workshop and service
         if self.discount and (self.discount.workshop != self.workshop or self.discount.service != self.service):
