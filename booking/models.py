@@ -214,6 +214,14 @@ class Booking(models.Model):
             discount += self.coupon.calculate_discount(price)
         return discount
 
+    @property
+    def customer_phone_number(self):
+        return self.customer.profile.phone_number
+
+    @property
+    def customer_whatsapp_link(self):
+        return f"https://wa.me/+2{self.customer_phone_number}"
+
 
 @receiver(pre_save, sender=Booking)
 def update_booking_attributes(sender, instance, **kwargs):
