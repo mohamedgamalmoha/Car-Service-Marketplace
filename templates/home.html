@@ -109,7 +109,7 @@
             <!-- Slides -->
             {% for workshop in workshops %}
             <div class="swiper-slide position-relative d-flex justify-content-center ">
-                <img src="{% if workshop.image %}{{ workshop.image.url }}{% else %}{% static 'images/workshop.png' %}{% endif %}" class="w-100" alt="about" style="background: #3F3F3E; height: 100%; width: 100%;">
+                <img src="{% if workshop.image %}{{ workshop.image.url }}{% else %}{% static 'images/workshop.png' %}{% endif %}" class="w-100" alt="about" style="background: #3F3F3E; height: 250px; width: 100%;">
                 <div class="overLay p-3 position-absolute w-100 h-100 start-0 top-0 primary-color d-flex flex-column justify-content-center align-items-center">
                     <p class="text-white fw-bold">{{ workshop.name }}</p>
                     <p class="text-light text-center">
