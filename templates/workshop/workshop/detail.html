@@ -171,7 +171,8 @@
             {% csrf_token %}
             <input type="hidden" name="workshop" value="{{ workshop.id }}">
             <div class="col-md-12">
-                <textarea style="background-color: #303030; border-radius: 15px; height: 150px;" class="border-0 p-3 text-light w-100" placeholder="what's on your mind?" name="comment" id="comment"></textarea>
+                <input type="text" class="border-0 p-3 text-light w-100" name="title" title="title" placeholder="title" style="background-color: #303030; border-radius: 15px;">
+                <textarea style="background-color: #303030; border-radius: 15px; height: 150px; margin-top: 10px;" class="border-0 p-3 text-light w-100" placeholder="what's on your mind?" name="comment" id="comment"></textarea>
             </div>
             <input type="submit" value="Comment" class="primary-color text-decoration-none rounded-3 px-4 py-2 fw-bold text-white d-flex ms-auto mt-3 me-2" style="width: fit-content;">
         </form>
