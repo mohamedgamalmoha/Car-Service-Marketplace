@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<section class="container py-5">
+    <h3 class="fw-bold text-light fs-3 text-center">List of Posts</h3>
+    <div class="row justify-content-center p-0 m-0">
+        <div class="col-md-6">
+            <form method="GET">
+                <div class="input-group my-5 rounded-3" style="border: 1px solid #333;">
+                    {{ filter.form.search }}
+                    <button class="btn text-white shadow-none border-0" type="submit" style="background-color: #222;" id="button-addon2"><i class="fa fa-search"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="row align-items-start gap-md-0 gap-4">
+            {% for post in posts %}
+            <div class="col-lg-3 col-md-6 p-2 ">
+                <div class="d-flex flex-column" style="background-color: #222; border-radius: 15px; overflow: hidden;">
+                    <div class=" p-0" style="height: 200px; overflow: hidden;">
+                        <img src="{% if post.image %}{{ post.image.url }}{% else %}{% static 'images/no_post.png' %}{% endif %}" style="object-fit: contain; width: 100%;" alt="about">
+                    </div>
+                    <div class=" p-3">
+                        <p class="fw-bold text-white my-3">{{ post.title }}</p>
+                        <p class="text-secondary">
+                            {{ post.body|striptags|truncatechars_html:100 }}
+                        </p>
+                        <a href="{% url 'blog:post_detail' post.id %}" class="text-decoration-none active">Read More..</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% include 'base/pagination.html' %}
+
+{% endblock %}

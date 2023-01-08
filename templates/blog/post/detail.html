@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<!-- Back Section -->
+<div class="container p-0 my-3">
+    <div class="row p-0 ps-md-0 ps-3">
+        <a href="{% url 'blog:post_list'%}" class="text-decoration-none d-flex gap-3 fs-5 align-items-center" style="width: fit-content; color: #F40612;"> <i class="fa-solid fa-arrow-left "></i>Back</a>
+    </div>
+</div>
+<!-- Details Section -->
+<section class="container p-md-5 p-3 my-3" style="background-color: #222;">
+    <div class="row justify-content-center">
+        <div class="d-flex flex-column gap-4">
+            <div class="d-flex flex-column gap-4">
+                <p class="fw-bold text-white fs-2 m-0" style="line-height: 1em;">{{ post.title }}</p>
+            </div>
+            <div class=" p-0">
+                <img src="{% if post.image %}{{ post.image.url }}{% else %}{% static 'images/no_post.png' %}{% endif %}" class="rounded-3" style="object-fit: contain; width: 100%; max-height: 600px;" alt="about">
+            </div>
+            <p class="text-white-50 h5 m-0">
+                {{ post.body|safe }}
+            </p>
+        </div>
+    </div>
+</section>
+<!-- Comment Section -->
+<section class="py-5 container">
+    {% if request.user.is_authenticated and request.user.profile %}
+    <div class="row my-3 p-md-5 p-3 rounded-3" style="background-color: #222;">
+        <div class="col-md-3 d-flex gap-3 mb-3">
+            <img src="{% if request.user.profile.image %} {{  request.user.profile.image.url }}{% else %}{% static 'images/anonymous_user.png' %}{% endif %}" style="width: 50px; height: 50px;" class="rounded-circle"
+                alt="avatar">
+            <div class="d-flex flex-column gap-1">
+                <p class="fw-bold text-white m-0">{{ request.user.profile.name }}</p>
+            </div>
+        </div>
+        <form method="POST" action="{% url 'blog:create_post_comment' %}">
+            {% csrf_token %}
+            <input type="hidden" name="post" value="{{ post.id }}">
+            <div class="col-md-12">
+                <input type="text" class="border-0 p-3 text-light w-100" name="title" title="title" placeholder="title" style="background-color: #303030; border-radius: 15px;">
+                <textarea style="background-color: #303030; border-radius: 15px; height: 150px; margin-top: 10px;" class="border-0 p-3 text-light w-100" placeholder="write your comment here" name="comment" id="comment"></textarea>
+            </div>
+            <input type="submit" value="Comment" class="primary-color text-decoration-none rounded-3 px-4 py-2 fw-bold text-white d-flex ms-auto mt-3 me-2" style="width: fit-content;">
+        </form>
+    </div>
+    {% endif %}
+    {% for comment in post.comments.all %}
+    <div class="row my-3 p-md-5 p-3 rounded-3 gap-2 position-relative" style="background-color: #222;">
+        <div class="d-flex gap-3">
+            <img src="{% if comment.customer.profile.image %} {{ comment.customer.profile.image.url }}{% else %}{% static 'images/anonymous_user.png' %}{% endif %}" style="width: 50px; height: 50px;" class="rounded-circle" alt="avatar">
+           <div class="d-flex flex-column gap-1">
+            <p class="fw-bold text-white m-0">{{ comment.customer.profile.name }}</p>
+            <p class="text-muted m-0">{{ comment.created }}</p>
+           </div>
+        </div>
+        <h5 class="text-muted">{{ comment.title }}</h5>
+        <p class="text-white-50 m-0">{{ comment.comment }}</p>
+        {% if comment.customer == request.user %}
+        <button class="px-2 py-1 border-0 position-absolute bg-transparent" style="width: fit-content; right: 15px; top: 15px;" title="Edit Car">
+            <a href="{% url 'blog:update_post_comment' comment.id %}"><i class="fa-solid text-white fa-pen"></i></a>
+        </button>
+        {% endif %}
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}
