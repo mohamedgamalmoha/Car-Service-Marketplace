@@ -1,10 +1,24 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm
 
 from .models import Customer, CustomerProfile
 
 
-class RegistrationForm(UserCreationForm):
+class BaseUpdateCSSClassForm:
+    css_class: str = 'form-control'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Customize Fields - css class -
+        for field in self.fields:
+            self.fields[field].widget.attrs['class'] = 'form-control'
+
+
+class LogInForm(BaseUpdateCSSClassForm, AuthenticationForm):
+    ...
+
+
+class RegistrationForm(BaseUpdateCSSClassForm, UserCreationForm):
 
     class Meta:
         model = Customer
@@ -22,8 +36,12 @@ class RegistrationForm(UserCreationForm):
         return user
 
 
-class CustomerProfileForm(forms.ModelForm):
+class CustomerProfileForm(BaseUpdateCSSClassForm, forms.ModelForm):
 
     class Meta:
         model = CustomerProfile
         exclude = ('user', )
+
+
+class UserChangePasswordForm(BaseUpdateCSSClassForm, PasswordChangeForm):
+    ...

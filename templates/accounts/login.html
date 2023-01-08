@@ -1,13 +1,27 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% block subtitle %} {{ title }} {% endblock %}
 
 {% load static %}
 
 {% block content %}
-    <form method="POST" class="contact-form" style="width:65%; align:center; margin: 35px auto 0;">
-       <h4 style="text-align:center;">{{ title }}</h4>
-       {% csrf_token %}
-       {{ form.as_p }}
-       <div class="d-grid" style="margin-top:10px;"><button class="btn btn-dark btn-lg " id="submitButton" type="submit">Login</button></div>
-    </form>
+<section class="container py-5">
+    <div class="row justify-content-between align-items-center gap-md-0 gap-3">
+        <p class="fs-4 fw-bold text-white text-center mb-5">Log In</p>
+        <div class="col-md-5">
+            <img src="{% static 'images/login.svg' %}" class="w-100" alt="form">
+        </div>
+        <div class="col-md-5 rounded-3 p-md-5 py-3" style="background-color: #222; border: 1px solid #F40612;">
+            <button class="d-flex p-1 pe-3 shadow-none text-white align-items-center gap-3 m-auto mb-3"
+                    style="border: 1px solid #f4061251; background-color: #303030;"><i
+                    class="fa-brands fa-google active p-2" style="background-color: #3c3c3c ;"></i> Continue with google
+            </button>
+            <form class="text-secondary" method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn primary-color text-white fw-bold" style="margin-top: 10px;">Log in</button>
+            </form>
+        </div>
+    </div>
+</section>
 {% endblock %}

@@ -3,14 +3,13 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.generic import CreateView, UpdateView, DetailView, FormView
 from django.contrib.auth.backends import get_user_model
-from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import login, update_session_auth_hash
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.contrib.messages.views import SuccessMessageMixin
 
 from .mixins import CustomerAuthMixIn
 from .models import UserRole, CustomerProfile
-from .forms import RegistrationForm, CustomerProfileForm
+from .forms import RegistrationForm, CustomerProfileForm, LogInForm, UserChangePasswordForm
 
 
 User = get_user_model()
@@ -18,6 +17,7 @@ URL_REDIRECT = '/'
 
 
 class LogInView(SuccessMessageMixin, LoginView):
+    form_class = LogInForm
     template_name = 'accounts/login.html'
     success_url = reverse_lazy('accounts:profile')
     redirect_authenticated_user = True
@@ -66,6 +66,20 @@ class CustomerProfileView(CustomerAuthMixIn, DetailView):
     def get_object(self):
         return self.request.user.profile
 
+    def get_context_data(self, *args, **kwargs):
+        def update_query(query, **kgs):
+            for i in query:
+                i.update(**kgs)
+            return query
+        context = super().get_context_data(*args, **kwargs)
+        user = self.request.user
+        comments = list(update_query(user.comments.values('created'), **{'action': 'comment', 'icon': 'fa-solid fa-comment'}))
+        post_comments = list(update_query(user.post_comments.values('created'), **{'action': 'comment in blog post', 'icon': 'fa-sharp fa-solid fa-hashtag'}))
+        rates = list(update_query(user.rates.values('created'), **{'action': 'rate', 'icon': 'fa-solid fa-star'}))
+        reports = list(update_query(user.reports.values('created'), **{'action': 'reports', 'icon': 'fa-sharp fa-solid fa-flag'}))
+        context['activities'] = sorted((*comments, *post_comments, *reports, *rates), key=lambda i: i.get('created'), reverse=True)
+        return context
+
 
 class UpdateCustomerProfileView(SuccessMessageMixin, CustomerAuthMixIn, UpdateView):
     model = CustomerProfile
@@ -82,7 +96,7 @@ class UpdateCustomerProfileView(SuccessMessageMixin, CustomerAuthMixIn, UpdateVi
 
 
 class UserChangePasswordView(SuccessMessageMixin, PasswordChangeView):
-    form_class = PasswordChangeForm
+    form_class = UserChangePasswordForm
     template_name = 'accounts/user_change_password.html'
     success_message = 'Password has been updated successfully'
     extra_context = {'title': 'Change password'}

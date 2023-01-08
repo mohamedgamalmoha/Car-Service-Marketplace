@@ -1,36 +1,163 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h4>Hello!!, {{ customer.name }}</h4><br>
-<a href="{% url 'accounts:logout' %}">Logout</a>
-<a href="{% url 'accounts:profile_update' %}">Update Profile</a>
-<a href="{% url 'car:create' %}">Add Car</a>
-<a href="{% url 'accounts:change_password' %}">Change Password</a>
+{% extends 'base.html' %}
+{% load static %}
 
 
-<table>
-    <tr>
-        <th>Brand</th>
-        <th>Model</th>
-        <th>Car Number</th>
-        <th>Model Year</th>
-        <th>Color</th>
-        <th>Edit</th>
-    </tr>
-    {% for car in request.user.profile.cars.all %}
-    <tr>
-        <td>{{ car.brand }}</td>
-        <td>{{ car.model }}</td>
-        <td>{{ car.number }}</td>
-        <td>{{ car.model_year }}</td>
-        <td><a href="{% url 'car:update' car.id %}">edit</a></td>
-    </tr>
-   {% endfor %}
-</table>
+{% block content %}
+ <!-- Profile Section -->
+<section class="container py-5">
+    <div class="row" style="background-color: #222; border-radius: 15px; overflow: hidden;">
+        <div class="p-0 position-relative">
+            <span class="position-absolute start-0 top-0 w-100 h-100"
+                  style="background-color: rgba(34, 34, 34, 0.502);"></span>
+            <img class="p-0 w-100" style="height: 200px; object-fit: cover;" src="{% static 'images/profile_pg.png' %}" alt="bg">
+        </div>
+        <div class="row justify-content-center align-items-center py-3 px-5">
+            <div class="col-md-2 d-inline-block" style="margin-top: -7rem; z-index: 3;">
+                <img src="{% if customer.image %} {{ customer.image.url }}{% else %}{% static 'images/anonymous_user.png' %}{% endif %}" style="width: 175px; height: 175px;" class="d-flex rounded-circle m-auto" alt="avatar">
+            </div>
+            <div class="col pt-md-0 pt-3 d-flex flex-md-row flex-column align-items-center justify-content-md-between justify-content-center">
+                <div class="d-flex text-center">
+                    <p class="fs-4 fw-bold text-white m-0 ps-md-5 ps-lg-0 ms-md-5 ms-lg-0">{{ customer.name }}</p>
+                </div>
+                <div class="d-flex gap-2">
+                    <a href="{% url 'accounts:profile_update' %}" class="btn text-white shadow-none d-flex align-items-center gap-2"><i
+                            class="fa-solid fa-pen"></i> Edit Profile</a>
+                    <button class="btn text-white shadow-none d-flex align-items-center gap-2" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop"><i class="fa-solid fa-ellipsis"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3 justify-content-between align-items-start gap-4">
+        <div class="col p-3" style="background-color: #222; border-radius: 15px;">
+            <p class="text-muted">Profile Details</p>
+            <div class="d-flex gap-2 my-3">
+                <p class="fw-bold text-white  m-0">Email Address: </p>
+                <p class="fw-normal text-white m-0">{{ customer.user.email }}</p>
+            </div>
+            <div class="d-flex gap-2 my-3">
+                <p class="fw-bold text-white  m-0">Phone Number: </p>
+                <p class="fw-normal text-white m-0">{{ customer.phone_number }}</p>
+            </div>
+            <div class="d-flex my-3 gap-2">
+                <p class="fw-bold text-white  m-0">Gender: </p>
+                <p class="fw-normal text-white m-0">{{ customer.gender }}</p>
+            </div>
+            <div class="d-flex my-3 gap-2">
+                <p class="fw-bold text-white  m-0">City: </p>
+                <p class="fw-normal text-white m-0">{{ customer.city }}</p>
+            </div>
+            <div class="d-flex my-3 gap-2">
+                <p class="fw-bold text-white  m-0">State: </p>
+                <p class="fw-normal text-white m-0">{{ customer.state }}<</p>
+            </div>
+            <div class="d-flex my-3 gap-2">
+                <p class="fw-bold text-white  m-0">Address: </p>
+                <p class="fw-normal text-white m-0">{{ customer.address }}<</p>
+            </div>
+            <div class="d-flex my-3 gap-2">
+                <p class="fw-bold text-white  m-0">Date of birth: </p>
+                <p class="fw-normal text-white m-0">{{ customer.date_of_birth }}</p>
+            </div>
+        </div>
+        <div class="col-lg-8 d-flex flex-column gap-4 ">
+            <p class="fw-bold text-white m-0 fs-4">Personal Cars <span style="padding-left: 10px;" title="Add Car"><a href="{% url 'car:create' %}"><i class="fa-solid fa-add" style="color:#F40612;"></i></a></span></p>
+            {% if user.cars %}
+            {% for car in user.cars.all %}
+                <div class="row p-0 d-flex align-items-center position-relative" style="background-color: #222; border-radius: 15px; overflow: hidden;">
+                <div class="col-md-4 p-0" style="height: 200px; overflow: hidden;">
+                    <img src="{% static 'images/car_default.png' %}" style="object-fit: contain; width: 100%;" alt="about">
+                </div>
+                <div class="col-md-4 p-3">
+                    <div class="d-flex gap-2 my-3">
+                        <p class="fw-bold text-white">Brand</p>
+                        <p class="text-white">{{ car.brand.name }}</p>
+                    </div>
+                    <div class="d-flex gap-2 my-3">
+                        <p class="fw-bold text-white">Model</p>
+                        <p class="text-white">{{ car.model }}</p>
+                    </div>
+                    <div class="d-flex gap-2 my-3">
+                        <p class="fw-bold text-white">Year</p>
+                        <p class="text-white">{{ car.model_year }}</p>
+                    </div>
+                </div>
+                <div class="col-md-4 p-3">
+                    <div class="d-flex gap-2 my-3">
+                        <p class="fw-bold text-white">Car Number</p>
+                        <p class="text-white">{{ car.number }}</p>
+                    </div>
+                    <div class="d-flex gap-2 my-3">
+                        <p class="fw-bold text-white">Color.</p>
+                        <p class="text-white">{{ car.color }}</p>
+                    </div>
+                </div>
+                <button class="px-2 py-1 border-0 position-absolute bg-transparent" style="width: fit-content; right: 15px; top: 15px;" title="Edit Car">
+                    <a href="{% url 'car:update' car.id %}"><i class="fa-solid text-white fa-pen"></i></a>
+                </button>
+            </div>
+            {% endfor %}
+            {% else %}
+            {# Add Car #}
+            {% endif %}
 
-</body>
-</html>
+            <p class="fw-bold text-white m-0 fs-4">Bookings</p>
+            {% for booking in user.bookings.all %}
+            <div class="row p-0 d-flex align-items-center" style="background-color: #222; border-radius: 15px; overflow: hidden;">
+                <div class="flex-wrap p-5 d-flex gap-3 position-relative">
+                    <div class="d-flex gap-2 ">
+                        <p class="fw-bold m-0 text-white">Workshop</p>
+                        <p class="text-white m-0">{{ booking.workshop }}</p>
+                    </div>
+                    <div class="d-flex gap-2 ">
+                        <p class="fw-bold m-0 text-white">Service</p>
+                        <p class="text-white m-0">{{ booking.service }}</p>
+                    </div>
+                    <div class="d-flex gap-2 ">
+                        <p class="fw-bold m-0 text-white">Status</p>
+                        <p class="text-white m-0">{{ booking.status }}</p>
+                    </div>
+                    <div class="d-flex gap-2 ">
+                        <p class="fw-bold m-0 text-white">Brand</p>
+                        <p class="text-white m-0">Kia</p>
+                    </div>
+                    <div class="d-flex gap-2 ">
+                        <p class="fw-bold m-0 text-white">Estimated Price</p>
+                        <p class="text-white m-0">{{ booking.estimated_price }}</p>
+                    </div>
+                    <div class="d-flex gap-2 ">
+                        <p class="fw-bold m-0 text-white">Schedule At</p>
+                        <p class="text-white m-0">{{ booking.schedule_at }}</p>
+                    </div>
+                    <button class="px-2 py-1 border-0 position-absolute bg-transparent" style="width: fit-content; right: 15px; top: 15px;" title="Edit Car">
+                        <a href="{% url 'booking:update' booking.id %}"><i class="fa-solid text-white fa-pen"></i></a>
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Last Activity Section -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content" style="background-color: #222;">
+            <div class="d-flex justify-content-between align-items-center p-3" style="border-bottom: 1px solid #f406124e;">
+                <h5 class="modal-title text-white" id="staticBackdropLabel">Activity Log</h5>
+                <button type="button" class="btn-close shadow-none btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="pb-3" style="max-height: 400px; overflow-y: auto;">
+                {% for activity in activities %}
+                <div class="d-flex align-items-center gap-3 flex-wrap p-3 " style="border-bottom: 1px solid #f406124e;">
+                    <i class="{{ activity.icon }} active fs-5"></i>
+                    <a href="" class="text-decoration-none text-white">{{ activity.action }} at</a>
+                    <p class="m-0 text-secondary">{{ activity.created }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

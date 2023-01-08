@@ -67,7 +67,7 @@ class CustomerProfile(models.Model):
 
     @property
     def name(self):
-        return self.user.get_full_name()
+        return self.user.get_full_name() or self.username
 
     @property
     def age(self):
