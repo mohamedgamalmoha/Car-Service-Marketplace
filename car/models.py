@@ -1,5 +1,4 @@
 from django.db import models
-from colorfield.fields import ColorField
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 

@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
 
     # Third party application
-    'colorfield',
     'django_filters',
     'ckeditor',
     'crispy_forms',
