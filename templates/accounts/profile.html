@@ -115,11 +115,11 @@
                     </div>
                     <div class="d-flex gap-2 ">
                         <p class="fw-bold m-0 text-white">Status</p>
-                        <p class="text-white m-0">{{ booking.status }}</p>
+                        <p class="text-white m-0">{{ booking.get_status_display }}</p>
                     </div>
                     <div class="d-flex gap-2 ">
                         <p class="fw-bold m-0 text-white">Brand</p>
-                        <p class="text-white m-0">Kia</p>
+                        <p class="text-white m-0">{{ booking.car.brand }}</p>
                     </div>
                     <div class="d-flex gap-2 ">
                         <p class="fw-bold m-0 text-white">Estimated Price</p>
