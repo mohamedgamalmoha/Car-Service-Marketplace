@@ -46,7 +46,7 @@
                 <p class="position-absolute discount-number px-3 py-2 text-white fw-bold rounded-circle primary-color">
                     {{ discount.value }}% <br> Off
                 </p>
-                <p class="fw-bold text-white fs-5 m-0 pt-3">{{ discount.type }}</p>
+                <p class="fw-bold text-white fs-5 m-0 pt-3">{{ discount.get_type_display }}</p>
                 <p class="text-light m-0">Discount of {{ discount.service }} service.</p>
                 <a href="{% url 'workshop:workshop_detail' discount.workshop.id %}" class="px-4 py-2 primary-color fw-bold text-decoration-none text-white d-inline-block mt-3">Details</a>
             </div>
