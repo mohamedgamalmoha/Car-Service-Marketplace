@@ -10,7 +10,7 @@
     <div class="row justify-content-center align-items-center gap-md-0 gap-3">
         <p class="fs-4 fw-bold text-white text-center mb-5">{% block form_title %} {{ title }} {% endblock %}</p>
         <div class="col-md-5 rounded-3 p-md-5 py-3" style="background-color: #222; border: 1px solid #F40612; color: whitesmoke;">
-            <form class="text-secondary" method="{% block form_method %}{% endblock %}">
+            <form class="text-secondary" method="{% block form_method %}{% endblock %}" enctype="multipart/form-data">
                 {% block form_body %}
                     {% csrf_token %}
                     {{ form|crispy }}
