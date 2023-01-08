@@ -1,9 +1,196 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block subtitle %} Home page {% endblock %}
+{% block subtitle %} Home Page {% endblock %}
 
 {% block content %}
-<h4> Hello World !!</h4>
-{{ request.user }}
+<!-- Header Section -->
+<header class="container hero py-5 ">
+    <h1 class="display-5 text-center w-75 m-auto fw-bold text-white">
+        The road to <span class="active">adventure</span> starts with a safe
+        ride - book yours today!
+    </h1>
+    <div class="swiper mySwiper py-5" style="border-radius: 16px;">
+        <!-- Additional Required Wrapper -->
+        <div class="swiper-wrapper " style="border-radius: 16px;">
+            <!-- Slides -->
+            {% for header_image in header_images %}
+            {% if header_image.image %}
+            <div class="swiper-slide " style="border-radius: 16px;">
+                <img class="w-100 " style="border-radius: 16px;" src="{{ header_image.image.url }}" alt="{{ header_image.alt }}">
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <!-- If we need pagination -->
+        <div class="swiper-pagination"></div>
+
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center py-5">
+        <a href="{% url 'workshop:workshop_list' %}" class="px-4 py-2 border border-secondary text-decoration-none text-white" style="z-index: 2;">Book Now</a>
+    </div>
+</header>
+
+<!-- Discount Section -->
+<section class="container py-5">
+    <p class="fs-4 fw-bold text-white text-center">Discount</p>
+    <div class="swiper mySwiper3 py-5">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper ">
+            <!-- Slides -->
+            {% for discount in discounts %}
+            <div class="swiper-slide position-relative d-flex flex-column justify-content-center align-items-center gap-3 p-3 pt-5 text-center discount">
+                <p class="position-absolute discount-number px-3 py-2 text-white fw-bold rounded-circle primary-color">
+                    {{ discount.value }}% <br> Off
+                </p>
+                <p class="fw-bold text-white fs-5 m-0 pt-3">{{ discount.type }}</p>
+                <p class="text-light m-0">Discount of {{ discount.service }} service.</p>
+                <a href="{% url 'workshop:workshop_detail' discount.workshop.id %}" class="px-4 py-2 primary-color fw-bold text-decoration-none text-white d-inline-block mt-3">Details</a>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="container py-5 mb-5">
+    <div class="row align-items-center gap-md-0 gap-4" style="min-height: 500px;">
+        <div class="col-md-8 position-relative">
+            <img class="about-img" src="{% static 'images/why_us_1.jpg' %}" alt="about">
+            <img class="position-absolute about-img second d-md-block d-none" src="{% static 'images/why_us_2.jpg' %}" alt="about">
+        </div>
+        <div class="col-md-4">
+            <p class="mb-3 fw-bold text-white fs-3">Why do you choose us?</p>
+            <p class="mb-3  text-muted text-light">{{ main_info.why_us }}</p>
+            <a href="{% url 'info:about_us' %}" class="px-4 py-2 primary-color fw-bold text-decoration-none text-white d-inline-block mt-3">Learn More</a>
+        </div>
+    </div>
+</section>
+
+<!-- Banner Section -->
+<section class="py-5 workSection" style=";background-image: url('{% static 'images/work_with_us.jpg' %}');">
+    <div class="w-75 py-5 text-center m-auto position-relative" style="z-index: 2;">
+        <p class="fs-2 fw-bold text-white pb-3">WORK WITH US </p>
+        <p class="fs-4  text-light">Keep Your Car Running Smoothly with Our Expert Care !!!</p>
+    </div>
+</section>
+
+<!-- Brands Section -->
+<section id="brands" class="container py-5">
+    <p class="fs-4 fw-bold text-white text-center">Brands</p>
+    <div class="swiper mySwiper2 py-5">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper ">
+            <!-- Slides -->
+            {% for brand in brands %}
+            <div class="swiper-slide d-flex justify-content-center ">
+                <img src="{{ brand.image.url }}" class="w-100" alt="about">
+            </div>
+            {% endfor %}
+        </div>
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+</section>
+
+<!-- Workshops Section -->
+<section id="workshop" class="container py-5">
+    <p class="fs-4 fw-bold text-white text-center">Workshops</p>
+    <div class="swiper mySwiper3 py-5">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper ">
+            <!-- Slides -->
+            {% for workshop in workshops %}
+            <div class="swiper-slide position-relative d-flex justify-content-center ">
+                <img src="{% if workshop.image %}{{ workshop.image.url }}{% else %}{% static 'images/workshop.png' %}{% endif %}" class="w-100" alt="about" style="background: #3F3F3E">
+                <div class="overLay p-3 position-absolute w-100 h-100 start-0 top-0 primary-color d-flex flex-column justify-content-center align-items-center">
+                    <p class="text-white fw-bold">{{ workshop.name }}</p>
+                    <p class="text-light text-center">
+                        {{ workshop.description|striptags|truncatechars_html:100 }}.<br>
+                        <a href="{% url 'workshop:workshop_detail' workshop.id %}" class="text-light">More..</a>
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="container py-5">
+    <div class="row justify-content-between align-items-center gap-md-0 gap-3">
+        <div class="col-md-3 d-flex flex-column gap-5">
+           <div class="d-flex gap-4 ">
+            <i class="fa-solid fa-car fs-1 active"></i>
+            <div>
+                <p class="fs-5 fw-bold text-white mb-1">Valet</p>
+                <p class="text-muted">
+                    Move your car without moving from your place. For more <a class="active text-decoration-none" href="{{ main_info.whatsapp_link }}"><span>contact us</span></a>
+                </p>
+            </div>
+           </div>
+           <div class="d-flex gap-4 ">
+            <i class="fa-solid fa-money-bill fs-1 active"></i>
+            <div>
+                <p class="fs-5 fw-bold text-white mb-1">Installment</p>
+                <p class="text-muted">
+                    You don't need to pay all of your pills, you can split into parts over months. For more <a class="active text-decoration-none"  href="{{ main_info.whatsapp_link }}"><span>contact us</span></a>
+                </p>
+            </div>
+           </div>
+           <div class="d-flex gap-4 ">
+            <i class="fa-solid fa-phone-volume fs-1 active"></i>
+            <div>
+                <p class="fs-5 fw-bold text-white mb-1"> Customer Support</p>
+                <p class="text-muted">
+                    We have an active customer support from({{ main_info.open_at }}) to({{ main_info.close_at }}). For more <a class="active text-decoration-none"  href="{{ main_info.whatsapp_link }}"><span>contact us</span></a>
+                </p>
+            </div>
+           </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center position-relative" style="overflow: hidden;">
+            <img src="{% static 'images/car_body.png' %}" height="600" alt="car">
+            <img class="position-absolute behind" src="{% static 'images/tools.png' %}" alt="behind">
+        </div>
+        <div class="col-md-3 d-flex flex-column gap-5">
+            <div class="d-flex gap-4 ">
+             <i class="fa-solid fa-comments fs-1 active"></i>
+             <div>
+                 <p class="fs-5 fw-bold text-white mb-1">Share Ur Opinion</p>
+                 <p class="text-muted">
+                     Share your opinion with us, you can rate or comment on workshop. You can also report a problem. For more <a class="active text-decoration-none" href="{{ main_info.whatsapp_link }}"><span>contact us</span></a>
+                 </p>
+             </div>
+            </div>
+            <div class="d-flex gap-4">
+             <i class="fa-solid fa-percent fs-1 active"></i>
+             <div>
+                 <p class="fs-5 fw-bold text-white mb-1">Discounts</p>
+                 <p class="text-muted">
+                     We offer a variety of discounts and promo codes with no limit. For more <a class="active text-decoration-none" href="{{ main_info.whatsapp_link }}"><span>contact us</span></a>
+                 </p>
+             </div>
+            </div>
+            <div class="d-flex gap-4 ">
+             <i class="fa-solid fa-gift fs-1 active"></i>
+             <div>
+                 <p class="fs-5 fw-bold text-white mb-1">Gifts</p>
+                 <p class="text-muted">
+                     Different gifts for each time you servie throw us. For more <a class="active text-decoration-none" href="{{ main_info.whatsapp_link }}"><span>contact us</span></a>
+                 </p>
+             </div>
+            </div>
+         </div>
+    </div>
+</section>
 {% endblock %}

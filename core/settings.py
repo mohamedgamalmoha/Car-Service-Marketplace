@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-sd$_&+t$q^@4h@8-#nfkts*7_(88v_ow7r)s!x+4bq-zdf&!z6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -45,13 +45,15 @@ INSTALLED_APPS = [
     'colorfield',
     'django_filters',
     'ckeditor',
+    'crispy_forms',
 
     # Custom Apps
     'accounts',
     'workshop',
     'info',
     'car',
-    'booking'
+    'booking',
+    'blog'
 ]
 
 MIDDLEWARE = [
@@ -133,7 +135,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / '/static/'
+STATIC_ROOT = BASE_DIR / '/staticfiles/'
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
@@ -166,7 +168,7 @@ JAZZMIN_SETTINGS = {
     "site_brand": "CARZFIX",
 
     # Logo to use for your site, must be present in static files, used for brand on top left
-    "site_logo": BASE_DIR / "static/images/logo.png",
+    "site_logo": "images/logo.png",
 
     # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
     "login_logo": None,
@@ -178,7 +180,7 @@ JAZZMIN_SETTINGS = {
     "site_logo_classes": "img-circle",
 
     # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
-    "site_icon": None,
+    "site_icon": "images/logo.png",
 
     # Welcome text on the login screen
     "welcome_sign": "Welcome to the CARZFIX",
@@ -301,5 +303,5 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'full',
         'height': '100%',
         'width': '100%',
-    },
+    }
 }
