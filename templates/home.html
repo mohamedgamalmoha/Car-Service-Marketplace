@@ -17,7 +17,7 @@
             {% for header_image in header_images %}
             {% if header_image.image %}
             <div class="swiper-slide " style="border-radius: 16px;">
-                <img class="w-100 " style="border-radius: 16px;" src="{{ header_image.image.url }}" alt="{{ header_image.alt }}">
+                <img class="w-100 " style="border-radius: 16px; height: 100%; width: 100%;" src="{{ header_image.image.url }}" alt="{{ header_image.alt }}">
             </div>
             {% endif %}
             {% endfor %}
