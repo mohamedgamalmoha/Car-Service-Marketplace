@@ -1,8 +1,10 @@
 from django import forms
+
 from .models import ContactUs
+from accounts.forms import BaseUpdateCSSClassForm
 
 
-class ContactUsForm(forms.ModelForm):
+class ContactUsForm(BaseUpdateCSSClassForm, forms.ModelForm):
 
     class Meta:
         model = ContactUs

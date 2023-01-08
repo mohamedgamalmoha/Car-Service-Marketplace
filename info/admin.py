@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import MainInfo, Works, AboutUs, TermsOfService, CookiePolicy, PrivacyPolicy, FAQs, ContactUs
+from .models import MainInfo, Works, AboutUs, TermsOfService, CookiePolicy, PrivacyPolicy, FAQs, ContactUs, HeaderImage
 
 
 class MainInfoAdmin(admin.ModelAdmin):
@@ -23,6 +23,7 @@ class ContactUsAdmin(admin.ModelAdmin):
 admin.site.register(FAQs)
 admin.site.register(Works)
 admin.site.register(AboutUs)
+admin.site.register(HeaderImage)
 admin.site.register(CookiePolicy)
 admin.site.register(PrivacyPolicy)
 admin.site.register(TermsOfService)

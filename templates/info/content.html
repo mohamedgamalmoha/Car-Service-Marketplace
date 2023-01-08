@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block subtitle %} {{ title }} {% endblock %}
+
+{% block extra_style %}
+<link rel="stylesheet" href="{% static 'css/collapsible.css' %}" />
+{% endblock %}
+
+{% block content %}
+<div class="container my-5 py-5 ">
+    <h3 class="text-center my-3 fw-bold text-white">{{ title }}</h3>
+    {% for obj in objects %}
+    <button class="collapsible">{{ obj.title }}</button>
+    <div class="content">
+        <p>{{ obj.description }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/collapsible.js' %}"></script>
+{% endblock %}

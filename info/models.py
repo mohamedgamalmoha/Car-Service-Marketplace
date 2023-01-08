@@ -11,6 +11,7 @@ class MainInfo(models.Model):
     close_at = models.TimeField(null=True)
     mail = models.EmailField('Web email')
     whatsapp = models.CharField("Whatsapp number", max_length=11, validators=[PhoneNumberValidator, ])
+    why_us = models.TextField("Why do you choose us?", null=True)
 
     class Meta:
         verbose_name = 'Website Main Info'
@@ -109,3 +110,24 @@ class ContactUs(models.Model):
     class Meta:
         verbose_name = 'Contact Us'
         verbose_name_plural = 'Contact Us'
+
+
+class HeaderImageManager(models.Manager):
+
+    def active(self):
+        return self.filter(active=True)
+
+
+class HeaderImage(models.Model):
+    alt = models.CharField("Alternative (Alt) ", max_length=250, help_text="Text is meant to convey the “why” of the image as it relates to the content of a document or webpage")
+    image = models.ImageField(upload_to='home/header')
+    active = models.BooleanField(default=True, help_text="Setting it to false, makes the image disappear from homepage")
+
+    objects = HeaderImageManager()
+
+    def __str__(self):
+        return self.alt
+
+    class Meta:
+        verbose_name = 'Home Page Image'
+        verbose_name_plural = 'Home Page Images'
