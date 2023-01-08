@@ -1,13 +1,14 @@
 from django.db import models
-from django.utils.safestring import mark_safe
 from colorfield.fields import ColorField
+from django.utils.safestring import mark_safe
+from django.utils.translation import gettext_lazy as _
 
 from accounts.models import Customer
 
 
 class Brand(models.Model):
     name = models.CharField("Name", max_length=40, null=True)
-    image = models.ImageField("Logo", upload_to='customers/cars/', null=True)
+    image = models.ImageField("Logo", upload_to='brands/', null=True)
     created = models.DateTimeField(auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True, null=True)
 
@@ -25,7 +26,11 @@ class Car(models.Model):
     model = models.CharField("Model", max_length=40, blank=True, null=True)
     number = models.CharField("Car Number", max_length=40, blank=True, null=True)
     model_year = models.DateField("Model Year", null=True)
-    color = ColorField("Color", default='#000000', format="hexa")
+    mileage = models.IntegerField(_("Mileage"), null=True, help_text=_("The number of miles or the average distance that a vehicle can travel on a specified quantity of fuel"))
+    last_oil_change_date = models.DateField(_("Last Oil Change Date"), null=True, help_text=_("When did the last oil change happen?"))
+    last_maintenance_date = models.DateField(_("Last Maintenance Date"), null=True, help_text=_("When did the last maintenance happen?"))
+    last_maintenance_details = models.TextField(_("Last Maintenance Details"), null=True, help_text=_("Tell us more about what happened in the last maintenance"))
+    color = models.CharField("Color", default='#000000', max_length=20)
     created = models.DateTimeField(auto_now_add=True, null=True)
     updated = models.DateTimeField(auto_now=True, null=True)
 
