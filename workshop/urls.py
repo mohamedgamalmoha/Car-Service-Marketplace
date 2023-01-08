@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import (WorkShopList, WorkShopDetail,
+from .views import (WorkShopListView, WorkShopDetailView,
                     CreateRateView,  UpdateRateView, DeleteRateView,
                     CreateCommentView, UpdateCommentView, DeleteCommentView,
                     CreateReportIssueView, UpdateReportIssueView, DeleteReportIssueView)
@@ -9,8 +9,8 @@ from .views import (WorkShopList, WorkShopDetail,
 app_name = "workshop"
 
 urlpatterns = [
-    path('search/', WorkShopList.as_view(), name='workshop_list'),
-    path('detail/<int:pk>/', WorkShopDetail.as_view(), name='workshop_detail'),
+    path('search/', WorkShopListView.as_view(), name='workshop_list'),
+    path('detail/<int:pk>/', WorkShopDetailView.as_view(), name='workshop_detail'),
 
     path('rate-create/', CreateRateView.as_view(), name='create_rate'),
     path('rate-update/<int:pk>/', UpdateRateView.as_view(), name='update_rate'),

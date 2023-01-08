@@ -1,5 +1,6 @@
-import django_filters
+from django import forms
 from django.db import models
+import django_filters
 
 from car.models import Brand
 from .models import Service, WorkShop
@@ -26,9 +27,20 @@ class WorkShopOrderingFilter(django_filters.OrderingFilter):
 
 class WorkShopFilter(django_filters.FilterSet):
     search = django_filters.CharFilter(method='search_filter', label='Search')
-    brands = django_filters.ModelMultipleChoiceFilter(queryset=Brand.objects.all())
-    services = django_filters.ModelMultipleChoiceFilter(queryset=Service.objects.all())
+    brands = django_filters.ModelMultipleChoiceFilter(queryset=Brand.objects.all(), widget=forms.CheckboxSelectMultiple)
+    services = django_filters.ModelMultipleChoiceFilter(queryset=Service.objects.all(), widget=forms.CheckboxSelectMultiple)
     ordering = WorkShopOrderingFilter()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Customize Search Field
+        self.form.fields['search'].widget.attrs['class'] = 'bg-transparent px-4 py-1 text-white w-100'
+        self.form.fields['search'].widget.attrs['placeholder'] = "Search"
+        self.form.fields['search'].widget.attrs['style'] = "border:none;border-bottom: 1px solid #F40612;"
+        # Customize Ordering Field
+        self.form.fields['ordering'].widget.attrs['class'] = 'form-control'
+        self.form.fields['ordering'].widget.attrs['style'] = "border: 1px solid #f4061241; border-radius: 10px;" \
+                                                             " background-color:#222222; color:white;"
 
     class Meta:
         model = WorkShop

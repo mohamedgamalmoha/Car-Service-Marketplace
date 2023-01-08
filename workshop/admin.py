@@ -83,3 +83,5 @@ class ReportIssueAdmin(admin.ModelAdmin):
 admin.site.register(Service, ServiceAdmin)
 admin.site.register(WorkShop, WorkShopAdmin)
 admin.site.register(ReportIssue, ReportIssueAdmin)
+admin.site.register(Rate)
+admin.site.register(Comment)
