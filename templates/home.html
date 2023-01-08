@@ -44,7 +44,7 @@
             {% for discount in discounts %}
             <div class="swiper-slide position-relative d-flex flex-column justify-content-center align-items-center gap-3 p-3 pt-5 text-center discount">
                 <p class="position-absolute discount-number px-3 py-2 text-white fw-bold rounded-circle primary-color">
-                    {{ discount.value|floatformat:2 }} {% if discount.type == "0" %}Min{% elif discount.type == "1" %}% <br>Off{% elif discount.type == "2" %}<br>Free{% endif %}
+                    {{ discount.value|floatformat:2 }} {% if discount.type == "0" %}<br>Min{% elif discount.type == "1" %}% <br>Off{% elif discount.type == "2" %}<br>Free{% endif %}
                 </p>
                 <p class="fw-bold text-white fs-5 m-0 pt-3">{{ discount.get_type_display }}</p>
                 <p class="text-light m-0">Discount of {{ discount.service }} service.</p>
