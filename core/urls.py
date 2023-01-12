@@ -32,6 +32,13 @@ urlpatterns = [
     path('blog/', include('blog.urls', namespace="blog"))
 ]
 
+# Handlers for error pages
+handler400 = 'core.views.bad_request_view'
+handler403 = 'core.views.permission_denied_view'
+handler404 = 'core.views.page_not_found_view'
+handler500 = 'core.views.error_view'
+
+
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
