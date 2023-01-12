@@ -7,6 +7,7 @@ from django_filters.views import FilterView
 
 from .filters import WorkShopFilter
 from accounts.mixins import CustomerAuthMixIn
+from accounts.models import UserRole
 from .models import WorkShop, Rate, Comment, ReportIssue
 from .forms import RateForm, CommentForm, ReportIssueForm
 
@@ -26,8 +27,8 @@ class WorkShopDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['has_rate'] = True if self.request.user.is_authenticated and self.request.user.profile and \
-                                      self.get_object().id in self.request.user.rates.values_list('workshop', flat=True) \
+        context['has_rate'] = True if self.request.user.is_authenticated and self.request.user.role == UserRole.CUSTOMER \
+                                      and self.get_object().id in self.request.user.rates.values_list('workshop', flat=True) \
             else False
         return context
 
