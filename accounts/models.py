@@ -15,6 +15,10 @@ class UserRole(models.TextChoices):
     STAFF = "STAFF", "Staff"
     CUSTOMER = "CUSTOMER", "Customer"
 
+    @classmethod
+    def as_dict(cls):
+        return {k: v.value for k, v in dict(cls.__members__).items()}
+
 
 class UserGender(models.TextChoices):
     MALE = "M", "Male"
