@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from .models import Coupon, Discount, Booking
+from .models import Coupon, Discount, Booking, Expense
 
 
 class CouponAdmin(admin.ModelAdmin):
@@ -25,6 +25,12 @@ class BookingAdmin(admin.ModelAdmin):
     show_customer_whatsapp_link.short_description = "Whatsapp Link"
 
 
+class ExpenseAdmin(admin.ModelAdmin):
+    display_list = ('cause', 'amount', 'paid_at', 'create_at', 'update_at')
+    list_filter = ('paid_at', )
+
+
 admin.site.register(Coupon, CouponAdmin)
 admin.site.register(Discount, DiscountAdmin)
 admin.site.register(Booking, BookingAdmin)
+admin.site.register(Expense, ExpenseAdmin)

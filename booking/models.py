@@ -223,6 +223,14 @@ class Booking(models.Model):
         return f"https://wa.me/+2{self.customer_phone_number}"
 
 
+class Expense(models.Model):
+    cause = models.CharField(verbose_name=_('Cause'), max_length=500, help_text=_('What is this expense for?'))
+    amount = models.DecimalField(verbose_name=_('Amount'), decimal_places=2, max_digits=8, null=True, blank=True, default=0)
+    paid_at = models.DateTimeField(verbose_name=_('Paid At'), help_text=_('When this expense is paid?'))
+    create_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creation Date'))
+    update_at = models.DateTimeField(auto_now=True, verbose_name=_('Update Date'))
+
+
 @receiver(pre_save, sender=Booking)
 def update_booking_attributes(sender, instance, **kwargs):
     """Update booking status after changing the estimated price"""
