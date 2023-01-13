@@ -40,6 +40,11 @@
                 ({{ workshop.avg_rate }}) avg rating | {{ workshop.count_rate }} ratings
             </div>
             <div>{{ workshop.description|safe }}</div>
+            <form method="POST" action="{% url 'booking:create_without_discount' %}">
+                {% csrf_token %}
+                <input type="hidden" value="{{ workshop.id }}" name="workshop">
+                <input type="submit" value="Book Now" class="primary-color text-decoration-none rounded-3 px-4 py-2 fw-bold text-white d-flex" style="width: fit-content;">
+            </form>
         </div>
     </div>
 </section>
@@ -105,7 +110,7 @@
                 </p>
                 <p class="fw-bold text-white fs-5 m-0 pt-3">{{ discount.get_type_display }}</p>
                 <p class="text-light m-0">Discount of {{ discount.service }} service</p>
-                <form  method="POST" action="{% url 'booking:create' %}">
+                <form  method="POST" action="{% url 'booking:create_with_discount' %}">
                     {% csrf_token %}
                     <input type="hidden" value="{{ discount.workshop.id }}" name="workshop">
                     <input type="hidden" value="{{ discount.service.id }}" name="service">

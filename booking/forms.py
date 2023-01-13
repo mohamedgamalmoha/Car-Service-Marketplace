@@ -16,6 +16,7 @@ class CreateBookingForm(BaseUpdateCSSClassForm, forms.ModelForm):
         super(CreateBookingForm, self).__init__(*args, **kwargs)
         for field_name in self.field_order:
             self.fields[field_name].required = False
+            self.fields[field_name].widget.attrs['disabled'] = 'disabled'
 
     class Meta:
         model = Booking
