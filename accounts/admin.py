@@ -1,10 +1,12 @@
 from django.db import models
-from django.utils.timezone import localdate
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from django.utils.timezone import localdate
 from django.utils.translation import gettext_lazy as _
 
+from allauth.socialaccount.models import SocialAccount, SocialToken
 
+from booking.utils import get_object_or_none
 from .models import User, UserRole, CustomerProfile
 
 
@@ -44,6 +46,16 @@ class CustomerProfileInlineAdmin(admin.TabularInline):
     readonly_fields = ('name', 'phone_number', 'city', 'state', 'address', 'gender', 'age')
 
 
+class SocialAccountInlineAdmin(admin.TabularInline):
+    model = SocialAccount
+    extra = 0
+    min_num = 0
+    max_num = 0
+    can_delete = False
+    fields = ('provider', 'last_login', 'date_joined', 'extra_data')
+    readonly_fields = ('provider', 'last_login', 'date_joined', 'extra_data')
+
+
 class CustomerProfileAdmin(admin.ModelAdmin):
     list_display = ["name", "age", "gender", "phone_number", 'created', 'updated']
     list_filter = ['gender', AgeCustomerListFilter]
@@ -56,13 +68,24 @@ class CustomerProfileAdmin(admin.ModelAdmin):
 
 
 class CustomUserAdmin(UserAdmin):
-    inlines = [
+    customer_inlines = [
         CustomerProfileInlineAdmin
+    ]
+    social_inlines = [
+        SocialAccountInlineAdmin
     ]
 
     def get_inlines(self, request, obj):
-        return self.inlines if obj.role == UserRole.CUSTOMER else ()
+        inlines = []
+        if obj.role == UserRole.CUSTOMER:
+            inlines.extend(self.customer_inlines)
+        if get_object_or_none(SocialAccount, user=obj) is not None:
+            inlines.extend(self.social_inlines)
+        inlines.extend(self.inlines)
+        return inlines
 
 
+admin.site.unregister(SocialToken)
+admin.site.unregister(SocialAccount)
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(CustomerProfile, CustomerProfileAdmin)
