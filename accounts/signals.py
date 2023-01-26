@@ -10,7 +10,7 @@ from accounts.models import Customer, UserRole, CustomerProfile
 def social_signed_up(sender, request, user, **kwargs):
     # set role as customer
     user.role = UserRole.CUSTOMER
-    user.save()
+    user.save(force_update=True)
     # create customer profile
     CustomerProfile.objects.create(user=user)
 
