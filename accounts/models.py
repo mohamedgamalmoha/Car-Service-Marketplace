@@ -1,6 +1,4 @@
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django.utils.timezone import datetime
 from django.utils.safestring import mark_safe
 from django.core.validators import RegexValidator
@@ -34,7 +32,7 @@ class User(AbstractUser):
         swappable = "AUTH_USER_MODEL"
 
     def save(self, *args, **kwargs):
-        if not self.pk:
+        if not self.pk and not self.role:
             self.role = self.base_role
             return super().save(*args, **kwargs)
 
@@ -85,9 +83,3 @@ class CustomerProfile(models.Model):
     def show_image(self, width: int = 150, height: int = 100):
         url = self.image.url
         return mark_safe(f'<a href="{url}"> <img src="{url}" width="{width}" height={height} /></a>')
-
-
-@receiver(post_save, sender=Customer)
-def create_customer_profile(sender, instance, created, **kwargs):
-    if created and instance.role == UserRole.CUSTOMER:
-        CustomerProfile.objects.create(user=instance)

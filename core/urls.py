@@ -26,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('info/', include('info.urls', namespace="info")),
     path('auth/', include('accounts.urls', namespace="accounts")),
+    path('auth/social/', include('allauth.urls')),
     path('workshop/', include('workshop.urls', namespace="workshop")),
     path('car/', include('car.urls', namespace="car")),
     path('booking/', include('booking.urls', namespace="booking")),
