@@ -15,6 +15,7 @@
         <div class="col-md-5 rounded-3 p-md-5 py-3" style="background-color: #222; border: 1px solid #F40612;">
             <div class="d-flex gap-1">
                 <button class="d-flex p-1 pe-3 shadow-none text-white align-items-center gap-3 m-auto mb-3" onclick="window.location='{% provider_login_url 'google'%}?next=/'" style="border: 1px solid #f4061251; background-color: #303030; width:100%"><i class="fa-brands fa-google active p-2" style="background-color: #3c3c3c ;"></i>Google</button>
+                <button class="d-flex p-1 pe-3 shadow-none text-white align-items-center gap-3 m-auto mb-3" onclick="window.location='{% provider_login_url 'facebook'%}?next=/'" style="border: 1px solid #f4061251; background-color: #303030; width:100%"><i class="fa-brands fa-facebook active p-2" style="background-color: #3c3c3c;"></i>Facebook</button>
             </div>
            <form class="text-secondary" method="POST">
                 {% csrf_token %}
