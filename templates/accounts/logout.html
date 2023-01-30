@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 <section class="container py-5 my-5">
     <div class="row justify-content-center align-items-center gap-md-0 gap-3" style="min-height: 50vh;">
         <div class="col-md-5">
-            <p class="fw-bold fs-3 text-white mb-5 text-center">You have logged out successfully</p>
+            <p class="fw-bold fs-3 text-white mb-5 text-center">{% translate "You have logged out successfully" %}</p>
             <img src="{% static 'images/login.svg' %}" class="w-100" alt="form">
         </div>
     </div>

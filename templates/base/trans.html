@@ -1,0 +1,32 @@
+{% load i18n %}
+<!--<form action="{% url 'set_language' %}" method="post">-->
+<!--    {% csrf_token %}-->
+<!--    <select name="language">-->
+<!--        {% get_current_language as LANGUAGE_CODE %}-->
+<!--        {% get_available_languages as LANGUAGES %}-->
+<!--        {% get_language_info_list for LANGUAGES as languages %}-->
+<!--        {% for language in languages %}-->
+<!--        <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected{% endif %}>-->
+<!--            {{ language.name_local }} ({{ language.code }})-->
+<!--        </option>-->
+<!--        {% endfor %}-->
+<!--    </select>-->
+<!--    <input type="submit" value="Go">-->
+<!--</form>-->
+
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% get_language_info_list for LANGUAGES as languages %}
+<form action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <div class="dropdown">
+        <button class="btn dropdown-toggle text-white shadow-none" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false" title="language">
+            <i class="fa-solid fa-globe me-2"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark rounded-3" style="background-color: #222; border: 1px solid #F40612;" aria-labelledby="dropdownMenuButton1">
+            {% for language in languages %}
+            <li><input class="dropdown-item text-light d-flex" type="submit" name="language" value="{{ language.code }}"></li>
+            {% endfor %}
+        </ul>
+    </div>
+</form>

@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 {% load crispy_forms_tags %}
 
 {% block content %}
 <section class="container py-5">
-    <h3 class="fw-bold text-light fs-3 text-center">List of Posts</h3>
+    <h3 class="fw-bold text-light fs-3 text-center">{% translate "List of Posts" %}</h3>
     <div class="row justify-content-center p-0 m-0">
         <div class="col-md-6">
             <form method="GET">
@@ -28,7 +29,7 @@
                         <p class="text-secondary">
                             {{ post.body|striptags|truncatechars_html:100 }}
                         </p>
-                        <a href="{% url 'blog:post_detail' post.id %}" class="text-decoration-none active">Read More..</a>
+                        <a href="{% url 'blog:post_detail' post.id %}" class="text-decoration-none active">{% translate "Read More.." %}</a>
                     </div>
                 </div>
             </div>

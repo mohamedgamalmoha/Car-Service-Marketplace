@@ -1,9 +1,11 @@
 from django.contrib import admin
 
+from modeltranslation.admin import TranslationAdmin
+
 from .models import MainInfo, Works, AboutUs, TermsOfService, CookiePolicy, PrivacyPolicy, FAQs, ContactUs, HeaderImage
 
 
-class MainInfoAdmin(admin.ModelAdmin):
+class MainInfoAdmin(TranslationAdmin):
     readonly_fields = ('whatsapp_link', )
 
     def has_delete_permission(self, request, obj=None):
@@ -20,12 +22,16 @@ class ContactUsAdmin(admin.ModelAdmin):
     search_fields = ('email', 'subject', 'first_name', 'last_name', 'message')
 
 
-admin.site.register(FAQs)
-admin.site.register(Works)
-admin.site.register(AboutUs)
+class TitledDescriptiveTranslationAdmin(TranslationAdmin):
+    ...
+
+
 admin.site.register(HeaderImage)
-admin.site.register(CookiePolicy)
-admin.site.register(PrivacyPolicy)
-admin.site.register(TermsOfService)
 admin.site.register(MainInfo, MainInfoAdmin)
 admin.site.register(ContactUs, ContactUsAdmin)
+admin.site.register(FAQs, TitledDescriptiveTranslationAdmin)
+admin.site.register(Works, TitledDescriptiveTranslationAdmin)
+admin.site.register(AboutUs, TitledDescriptiveTranslationAdmin)
+admin.site.register(CookiePolicy, TitledDescriptiveTranslationAdmin)
+admin.site.register(PrivacyPolicy, TitledDescriptiveTranslationAdmin)
+admin.site.register(TermsOfService, TitledDescriptiveTranslationAdmin)

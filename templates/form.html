@@ -1,9 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
+{% load i18n %}
 {% load crispy_forms_tags %}
 
 {% block subtitle %} {{ title }} {% endblock %}
-
-{% load static %}
 
 {% block content %}
 <style>
@@ -20,7 +20,7 @@
                     {% csrf_token %}
                     {{ form|crispy }}
                 {% endblock %}
-                <button type="submit" class="btn primary-color text-white fw-bold" style="margin-top: 10px;">{% block form_button %} Submit {% endblock %}</button>
+                <button type="submit" class="btn primary-color text-white fw-bold" style="margin-top: 10px;">{% block form_button %} {% translate "Submit" %} {% endblock %}</button>
             </form>
         </div>
     </div>

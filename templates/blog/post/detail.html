@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load i18n %}
 
 {% block content %}
 <!-- Back Section -->
 <div class="container p-0 my-3">
     <div class="row p-0 ps-md-0 ps-3">
-        <a href="{% url 'blog:post_list'%}" class="text-decoration-none d-flex gap-3 fs-5 align-items-center" style="width: fit-content; color: #F40612;"> <i class="fa-solid fa-arrow-left "></i>Back</a>
+        <a href="{% url 'blog:post_list'%}" class="text-decoration-none d-flex gap-3 fs-5 align-items-center" style="width: fit-content; color: #F40612;"> <i class="fa-solid fa-arrow-left "></i>{% translate "Back" %}</a>
     </div>
 </div>
 <!-- Details Section -->
@@ -30,8 +30,7 @@
     {% if request.user.is_authenticated and request.user.role == user_role.CUSTOMER %}
     <div class="row my-3 p-md-5 p-3 rounded-3" style="background-color: #222;">
         <div class="col-md-3 d-flex gap-3 mb-3">
-            <img src="{% if request.user.profile.image %} {{  request.user.profile.image.url }}{% else %}{% static 'images/anonymous_user.png' %}{% endif %}" style="width: 50px; height: 50px;" class="rounded-circle"
-                alt="avatar">
+            <img src="{% if request.user.profile.image %} {{  request.user.profile.image.url }}{% else %}{% static 'images/anonymous_user.png' %}{% endif %}" style="width: 50px; height: 50px;" class="rounded-circle" alt="avatar">
             <div class="d-flex flex-column gap-1">
                 <p class="fw-bold text-white m-0">{{ request.user.profile.name }}</p>
             </div>

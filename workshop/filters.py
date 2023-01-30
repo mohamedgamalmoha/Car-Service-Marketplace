@@ -1,5 +1,7 @@
 from django import forms
 from django.db import models
+from django.utils.translation import gettext_lazy as _
+
 import django_filters
 
 from car.models import Brand
@@ -11,8 +13,8 @@ class WorkShopOrderingFilter(django_filters.OrderingFilter):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.extra['choices'] += [
-            ('rate', 'Rate'),
-            ('-rate', 'Rate (descending)'),
+            ('rate', _('Rate')),
+            ('-rate', _('Rate (descending)')),
         ]
 
     def filter(self, queryset, value):
@@ -26,7 +28,7 @@ class WorkShopOrderingFilter(django_filters.OrderingFilter):
 
 
 class WorkShopFilter(django_filters.FilterSet):
-    search = django_filters.CharFilter(method='search_filter', label='Search')
+    search = django_filters.CharFilter(method='search_filter', label=_('Search'))
     brands = django_filters.ModelMultipleChoiceFilter(queryset=Brand.objects.all(), widget=forms.CheckboxSelectMultiple)
     services = django_filters.ModelMultipleChoiceFilter(queryset=Service.objects.all(), widget=forms.CheckboxSelectMultiple)
     ordering = WorkShopOrderingFilter()

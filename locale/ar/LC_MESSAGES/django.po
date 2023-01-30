@@ -1,0 +1,1169 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-01-30 20:46+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: .\accounts\admin.py:14
+msgid "Age"
+msgstr "عمر"
+
+#: .\accounts\admin.py:19
+msgid "in the twenties"
+msgstr "في العشرينيات"
+
+#: .\accounts\admin.py:20
+msgid "in the thirties"
+msgstr "في الثلاثينات "
+
+#: .\accounts\admin.py:21
+msgid "in the forties "
+msgstr "في الأربعينيات"
+
+#: .\accounts\admin.py:22
+msgid "in the fifties "
+msgstr "في الخمسينات "
+
+#: .\accounts\admin.py:23
+msgid "in the sixties "
+msgstr "في الستينات "
+
+#: .\accounts\admin.py:24
+msgid "in the seventies"
+msgstr "في السبعينيات"
+
+#: .\accounts\apps.py:8
+msgid "Accounts"
+msgstr "الحسابات الشخصية"
+
+#: .\accounts\models.py:13 .\core\settings.py:240 .\templates\base\nav.html:40
+msgid "Admin"
+msgstr "مدير"
+
+#: .\accounts\models.py:14
+msgid "Staff"
+msgstr "طاقم عمل"
+
+#: .\accounts\models.py:15 .\blog\models.py:38 .\booking\models.py:152
+#: .\car\models.py:28 .\workshop\models.py:135 .\workshop\models.py:148
+#: .\workshop\models.py:164
+msgid "Customer"
+msgstr "عميل"
+
+#: .\accounts\models.py:23
+msgid "Male"
+msgstr "ذكر"
+
+#: .\accounts\models.py:24
+msgid "Female"
+msgstr "أنثى"
+
+#: .\accounts\models.py:30
+msgid "Role"
+msgstr "دور"
+
+#: .\accounts\models.py:60
+msgid "User"
+msgstr "المستعمل"
+
+#: .\accounts\models.py:61 .\blog\models.py:18 .\info\models.py:125
+#: .\workshop\admin.py:74 .\workshop\models.py:54
+msgid "Image"
+msgstr "صورة"
+
+#: .\accounts\models.py:62 .\booking\models.py:223 .\info\models.py:106
+#: .\workshop\models.py:50
+msgid "Phone Number"
+msgstr "رقم الهاتف"
+
+#: .\accounts\models.py:63
+msgid "City"
+msgstr "مدينة"
+
+#: .\accounts\models.py:64
+msgid "State"
+msgstr "ولاية"
+
+#: .\accounts\models.py:65 .\workshop\models.py:109
+msgid "Address"
+msgstr "عنوان"
+
+#: .\accounts\models.py:66
+msgid "Gender"
+msgstr "الجنس"
+
+#: .\accounts\models.py:67
+msgid "Date Of Birth"
+msgstr "تاريخ الولادة"
+
+#: .\accounts\models.py:68 .\blog\models.py:21 .\blog\models.py:43
+#: .\car\models.py:11 .\car\models.py:44 .\info\models.py:109
+#: .\workshop\models.py:30 .\workshop\models.py:60 .\workshop\models.py:138
+#: .\workshop\models.py:152 .\workshop\models.py:173
+msgid "Created"
+msgstr "تاريخ الاضافه"
+
+#: .\accounts\models.py:69 .\blog\models.py:22 .\blog\models.py:44
+#: .\car\models.py:12 .\car\models.py:45 .\info\models.py:110
+#: .\workshop\models.py:31 .\workshop\models.py:61 .\workshop\models.py:139
+#: .\workshop\models.py:153 .\workshop\models.py:174
+msgid "Updated"
+msgstr "تاريخ التعديل"
+
+#: .\accounts\models.py:72
+msgid "Customer Profile"
+msgstr "ملف شخصي"
+
+#: .\accounts\models.py:73
+msgid "Customer Profiles"
+msgstr "ملفات شخصيه"
+
+#: .\accounts\models.py:94 .\blog\models.py:33 .\car\models.py:24
+#: .\workshop\models.py:91
+msgid "Show Image"
+msgstr "عرض الصورة"
+
+#: .\blog\apps.py:8 .\templates\base\nav.html:22
+msgid "Blog"
+msgstr "مدونة او مذكرة"
+
+#: .\blog\models.py:17 .\blog\models.py:41 .\info\models.py:43
+#: .\info\models.py:55 .\info\models.py:67 .\info\models.py:79
+#: .\info\models.py:91 .\workshop\models.py:121 .\workshop\models.py:150
+#: .\workshop\models.py:166
+msgid "Title"
+msgstr "عنوان"
+
+#: .\blog\models.py:19
+msgid "Body"
+msgstr "الموضوع"
+
+#: .\blog\models.py:20 .\workshop\models.py:55
+msgid "Activate"
+msgstr "تفعيل"
+
+#: .\blog\models.py:27 .\blog\models.py:40
+msgid "Post"
+msgstr "منشور"
+
+#: .\blog\models.py:28
+msgid "Posts"
+msgstr "منشورات"
+
+#: .\blog\models.py:42 .\blog\models.py:50
+#: .\templates\workshop\comment\create.html:4 .\workshop\models.py:151
+#: .\workshop\models.py:159
+msgid "Comment"
+msgstr "تعليق"
+
+#: .\blog\models.py:51 .\workshop\models.py:160
+msgid "Comments"
+msgstr "تعليقات"
+
+#: .\booking\admin.py:25 .\booking\models.py:227 .\info\models.py:27
+msgid "Whatsapp Link"
+msgstr "واتساب"
+
+#: .\booking\apps.py:8 .\booking\models.py:180
+msgid "Booking"
+msgstr "حجز"
+
+#: .\booking\forms.py:26
+msgid "If you have a coupon write it, otherwise leave it as it is"
+msgstr "إذا كان لديك قسيمة ، فاكتبها ، و اذ لا, اتركها كما هي"
+
+#: .\booking\forms.py:38
+msgid "Invalid Code"
+msgstr "الرمز غير صحيح"
+
+#: .\booking\forms.py:44
+msgid "Date should be in the future"
+msgstr "يجب أن يكون التاريخ في المستقبل"
+
+#: .\booking\models.py:14 .\booking\models.py:22
+msgid "PLACED"
+msgstr "تم الطلب"
+
+#: .\booking\models.py:15
+msgid "ESTIMATED"
+msgstr "المُقدَّر"
+
+#: .\booking\models.py:16
+msgid "PAID"
+msgstr "دفع"
+
+#: .\booking\models.py:17 .\booking\models.py:22
+msgid "CANCELED"
+msgstr "ألغيت"
+
+#: .\booking\models.py:18
+msgid "FAILED"
+msgstr "باءت بالفشل"
+
+#: .\booking\models.py:26
+msgid "Collected"
+msgstr "مجمعة"
+
+#: .\booking\models.py:27
+msgid "Not Collected"
+msgstr "لم تجمع"
+
+#: .\booking\models.py:31
+msgid "FIXED"
+msgstr "ثابت"
+
+#: .\booking\models.py:32
+msgid "PERCENTAGE"
+msgstr "النسبة المئوية"
+
+#: .\booking\models.py:33
+msgid "FREE"
+msgstr "مجانا"
+
+#: .\booking\models.py:46 .\booking\models.py:108
+msgid "Coupon Type"
+msgstr "نوع القسيمة"
+
+#: .\booking\models.py:47
+msgid "Code"
+msgstr "رمز"
+
+#: .\booking\models.py:48 .\booking\models.py:54 .\booking\models.py:112
+msgid "Leaving this field empty will generate a random code."
+msgstr "سيؤدي ترك هذا فارغًا إلى إنشاء رمز عشوائي."
+
+#: .\booking\models.py:49 .\booking\models.py:109 .\workshop\models.py:137
+msgid "Value"
+msgstr "قيمة"
+
+#: .\booking\models.py:50
+msgid "Customer Limit"
+msgstr "حد العميل"
+
+#: .\booking\models.py:51
+msgid "Maximum Limit"
+msgstr "حد اقصي"
+
+#: .\booking\models.py:52 .\booking\models.py:110
+msgid "Valid From"
+msgstr "صالح من تاريخ"
+
+#: .\booking\models.py:53 .\booking\models.py:111
+msgid "Valid Till"
+msgstr "صالح حتى"
+
+#: .\booking\models.py:55 .\booking\models.py:113 .\booking\models.py:176
+#: .\booking\models.py:234
+msgid "Creation"
+msgstr "خلق"
+
+#: .\booking\models.py:56 .\booking\models.py:114 .\booking\models.py:177
+#: .\booking\models.py:235 .\templates\accounts\profile_update.html:4
+#: .\templates\booking\update.html:4 .\templates\car\update.html:4
+#: .\templates\workshop\comment\update.html:4
+#: .\templates\workshop\rate\update.html:4
+#: .\templates\workshop\report_issue\update.html:4
+msgid "Update"
+msgstr "تحديث"
+
+#: .\booking\models.py:60 .\booking\models.py:162
+msgid "Coupon"
+msgstr "قسيمة"
+
+#: .\booking\models.py:61
+msgid "Coupons"
+msgstr "القسائم"
+
+#: .\booking\models.py:70 .\booking\models.py:131 .\booking\models.py:199
+msgid ""
+"In case of the type is %(type), the value should be in range 0 to 100 not "
+"%(value)"
+msgstr ""
+"في حالة أن النوع هو %(type) ، يجب أن تكون القيمة في النطاق من 0 إلى 100 لا"
+"%(value)"
+
+#: .\booking\models.py:76
+msgid ""
+"Limit of customers \"%(customer_limit)\" cant be bigger than maximum limit "
+"\"%(max_limit)\""
+msgstr ""
+"حد العملاء \"%(customer_limit)\" غير قادر على أن يكون أكبر من الحد الأقصى"
+"\"%(max_limit)\""
+
+#: .\booking\models.py:106 .\booking\models.py:154
+#: .\templates\accounts\profile.html:110 .\workshop\apps.py:8
+#: .\workshop\models.py:107 .\workshop\models.py:122 .\workshop\models.py:136
+#: .\workshop\models.py:149 .\workshop\models.py:165
+msgid "Workshop"
+msgstr "ورشة عمل"
+
+#: .\booking\models.py:107 .\booking\models.py:156
+#: .\templates\accounts\profile.html:114 .\workshop\models.py:37
+msgid "Service"
+msgstr "خدمة"
+
+#: .\booking\models.py:118 .\booking\models.py:119 .\booking\models.py:160
+#: .\templates\home.html:40
+msgid "Discount"
+msgstr "تخفيض"
+
+#: .\booking\models.py:125 .\booking\models.py:187
+msgid "Workshop %(workshop) doesnt offer this services  %(service)"
+msgstr "ورشة العمل %(workshop) لا تقدم هذه الخدمات %(service)"
+
+#: .\booking\models.py:158 .\car\apps.py:8
+msgid "Car"
+msgstr "سيارة"
+
+#: .\booking\models.py:164
+msgid "Booking Status"
+msgstr "وضع الحجز"
+
+#: .\booking\models.py:166 .\templates\accounts\profile.html:126
+msgid "Estimated Price"
+msgstr "السعر المقدر"
+
+#: .\booking\models.py:168
+msgid "Earned Amount"
+msgstr "المبلغ المكتسب"
+
+#: .\booking\models.py:170
+msgid "Commission Status"
+msgstr "حالة العمولة"
+
+#: .\booking\models.py:172
+msgid "Expense Amount"
+msgstr "مبلغ المصاريف"
+
+#: .\booking\models.py:173
+msgid "Note"
+msgstr "ملحوظة"
+
+#: .\booking\models.py:174
+msgid ""
+"Tell us more about car issues and parts that need to be maintained ...etc. "
+msgstr "أخبرنا بالمزيد عن مشاكل السيارة وأجزائها التي تحتاج إلى صيانة ... إلخ."
+
+#: .\booking\models.py:175 .\templates\accounts\profile.html:130
+msgid "Schedule At"
+msgstr "جدولة في"
+
+#: .\booking\models.py:175
+msgid "When would you like to book?"
+msgstr "متى تريد الحجز؟"
+
+#: .\booking\models.py:181 .\templates\accounts\profile.html:105
+msgid "Bookings"
+msgstr "الحجوزات"
+
+#: .\booking\models.py:193
+msgid "Car owner %(car_owner) and customer must be same person"
+msgstr "مالك السيارة %(car_owner) والعميل يجب أن يكونا نفس الشخص"
+
+#: .\booking\models.py:205
+msgid ""
+"The coupon hits the maximum limit %(max_limit) or user limit "
+"%(customer_limit)"
+msgstr ""
+"تصل القسيمة إلى الحد الأقصى %(max_limit) أو حد المستخدم%(customer_limit)"
+
+#: .\booking\models.py:231
+msgid "Cause"
+msgstr "سبب"
+
+#: .\booking\models.py:231
+msgid "What is this expense for?"
+msgstr "ما هي هذه النفقات؟"
+
+#: .\booking\models.py:232
+msgid "Amount"
+msgstr "المقدار"
+
+#: .\booking\models.py:233
+msgid "Paid At"
+msgstr "مدفوع في"
+
+#: .\booking\models.py:233
+msgid "When this expense is paid?"
+msgstr "متى يتم دفع هذه النفقة؟"
+
+#: .\booking\models.py:238
+msgid "Expense"
+msgstr "نفقه"
+
+#: .\booking\models.py:239
+msgid "Expenses"
+msgstr "نفقات"
+
+#: .\booking\views.py:19
+msgid ""
+"Your booking has successfully completed !!, customer support will contact "
+"you soon, for more updates please checkout your profile"
+msgstr ""
+"اكتمل حجزك بنجاح !! ، سيتصل بدعم العملاءأنت قريبًا ، لمزيد من التحديثات ، "
+"يرجى مراجعة ملفك الشخصي"
+
+#: .\booking\views.py:23
+msgid "Book A Service"
+msgstr "حجز خدمة"
+
+#: .\booking\views.py:104
+msgid "Update Booking"
+msgstr "تحديث الحجز"
+
+#: .\car\admin.py:10 .\car\models.py:32
+msgid "Model Year"
+msgstr "سنة الصنع"
+
+#: .\car\models.py:9 .\workshop\models.py:27 .\workshop\models.py:48
+msgid "Name"
+msgstr "اسم"
+
+#: .\car\models.py:10
+msgid "Logo"
+msgstr "شعار"
+
+#: .\car\models.py:15 .\car\models.py:29 .\templates\accounts\profile.html:74
+#: .\templates\accounts\profile.html:122
+msgid "Brand"
+msgstr "ماركة"
+
+#: .\car\models.py:16 .\templates\home.html:87
+#: .\templates\workshop\workshop\detail.html:52 .\workshop\models.py:52
+msgid "Brands"
+msgstr "العلامات التجارية"
+
+#: .\car\models.py:30 .\templates\accounts\profile.html:78
+msgid "Model"
+msgstr "نموذج"
+
+#: .\car\models.py:31
+msgid "Number"
+msgstr "رقم"
+
+#: .\car\models.py:34
+msgid ""
+"The number of miles or the average distance that a vehicle can travel on a "
+"specified quantity of fuel"
+msgstr ""
+"عدد الأميال أو متوسط المسافة التي يمكن للمركبة أن تقطعهاكمية محددة من الوقود"
+
+#: .\car\models.py:36
+msgid "Mileage"
+msgstr "عدد الأميال"
+
+#: .\car\models.py:37
+msgid "When did the last oil change happen?"
+msgstr "متى حدث تغيير الزيت الأخير؟"
+
+#: .\car\models.py:38
+msgid "Last Oil Change Date"
+msgstr "تاريخ آخر تغيير زيت"
+
+#: .\car\models.py:39
+msgid "When did the last maintenance happen?"
+msgstr "متى تم إجراء الصيانة الأخيرة؟"
+
+#: .\car\models.py:40
+msgid "Last Maintenance Date"
+msgstr "تاريخ آخر صيانة"
+
+#: .\car\models.py:41
+msgid "Tell us more about what happened in the last maintenance"
+msgstr "أخبرنا بالمزيد عما حدث في الصيانة الأخيرة"
+
+#: .\car\models.py:42
+msgid "Last Maintenance Details"
+msgstr "تفاصيل الصيانة الأخيرة"
+
+#: .\car\models.py:43 .\templates\accounts\profile.html:92
+msgid "Color"
+msgstr "اللون"
+
+#: .\car\models.py:48
+msgid "Customer`s Car"
+msgstr "سيارة العميل"
+
+#: .\car\models.py:49
+msgid "Customers` Cars"
+msgstr "سيارات العملاء"
+
+#: .\core\settings.py:148
+msgid "English"
+msgstr "إنجليزي"
+
+#: .\core\settings.py:149
+msgid "Arabic"
+msgstr "عربى"
+
+#: .\core\settings.py:248 .\templates\base\nav.html:16
+#: .\templates\workshop\workshop\detail.html:11
+msgid "Home"
+msgstr "الصفحة الرئيسية"
+
+#: .\info\apps.py:8
+msgid "Info"
+msgstr "معلومات"
+
+#: .\info\models.py:8
+msgid "Facebook Link"
+msgstr "رابط الفيسبوك"
+
+#: .\info\models.py:9
+msgid "Instagram Link"
+msgstr "رابط انستاجرام"
+
+#: .\info\models.py:10
+msgid "Twitter Link"
+msgstr "رابط تويتر"
+
+#: .\info\models.py:11
+msgid "Telegram Link"
+msgstr "رابط تيليجرام"
+
+#: .\info\models.py:12 .\workshop\models.py:56
+msgid "Open At"
+msgstr "فتح في"
+
+#: .\info\models.py:13 .\workshop\models.py:57
+msgid "Close At"
+msgstr "إغلاق عند"
+
+#: .\info\models.py:14
+msgid "Web Email"
+msgstr "بريد إلكتروني"
+
+#: .\info\models.py:15
+msgid "Whatsapp Number"
+msgstr "رقم الوتساب"
+
+#: .\info\models.py:16 .\templates\home.html:70
+msgid "Why do you choose us?"
+msgstr "لماذا تختارنا نحن؟"
+
+#: .\info\models.py:19 .\info\models.py:20
+msgid "Website Main Info"
+msgstr "معلومات الموقع الرئيسية"
+
+#: .\info\models.py:31
+msgid "Quote"
+msgstr "استفسار"
+
+#: .\info\models.py:32
+msgid "Answer"
+msgstr "إجابه"
+
+#: .\info\models.py:35
+msgid "FAQ"
+msgstr "التعليمات"
+
+#: .\info\models.py:36 .\templates\base\footer.html:22
+msgid "FAQs"
+msgstr "أسئلة وأجوبة"
+
+#: .\info\models.py:44 .\info\models.py:56 .\info\models.py:68
+#: .\info\models.py:80 .\info\models.py:92 .\workshop\models.py:28
+#: .\workshop\models.py:49 .\workshop\models.py:167
+msgid "Description"
+msgstr "الوصف"
+
+#: .\info\models.py:47 .\info\models.py:48
+msgid "About us"
+msgstr "معلومات عنا"
+
+#: .\info\models.py:59 .\info\models.py:60 .\templates\base\footer.html:24
+msgid "Terms Of Service"
+msgstr "شروط الخدمة"
+
+#: .\info\models.py:71 .\info\models.py:72
+msgid "How it works"
+msgstr "كيف تعمل"
+
+#: .\info\models.py:83 .\info\models.py:84 .\templates\base\footer.html:29
+msgid "Cookie Policy"
+msgstr "سياسة ملفات الارتباط"
+
+#: .\info\models.py:95 .\info\models.py:96 .\templates\base\footer.html:30
+msgid "Privacy Policy"
+msgstr "سياسة الخصوصية"
+
+#: .\info\models.py:103
+msgid "First Name"
+msgstr "الاسم الاول"
+
+#: .\info\models.py:104
+msgid "Last name"
+msgstr "الاسم العائلي"
+
+#: .\info\models.py:105
+msgid "Email"
+msgstr "بريد إلكتروني"
+
+#: .\info\models.py:107
+msgid "Subject"
+msgstr "موضوع"
+
+#: .\info\models.py:108
+msgid "Message"
+msgstr "رسالة"
+
+#: .\info\models.py:113 .\info\models.py:114 .\templates\base\nav.html:28
+#: .\templates\base\nav.html:53
+msgid "Contact Us"
+msgstr "اتصل بنا"
+
+#: .\info\models.py:124
+msgid "Alternative (Alt)"
+msgstr "بديل"
+
+#: .\info\models.py:124
+msgid ""
+"Text is meant to convey the “why” of the image as it relates to the content "
+"of a document or webpage"
+msgstr "النص يهدف إلى نقل سبب الصورة من حيث صلتها بالمحتوىمن مستند أو صفحة ويب"
+
+#: .\info\models.py:126
+msgid "Setting it to false, makes the image disappear from homepage"
+msgstr "تعيينه على خطأ ، يجعل الصورة تختفي من الصفحة الرئيسية"
+
+#: .\info\models.py:127
+msgid "Active"
+msgstr "نشيط"
+
+#: .\info\models.py:135
+msgid "Home Page Image"
+msgstr "صورة الصفحة الرئيسية"
+
+#: .\info\models.py:136
+msgid "Home Page Images"
+msgstr "صور الصفحة الرئيسية"
+
+#: .\templates\accounts\login.html:12 .\templates\base\nav.html:46
+msgid "Log In"
+msgstr "تسجيل الدخول"
+
+#: .\templates\accounts\login.html:18 .\templates\accounts\register.html:19
+msgid "Google"
+msgstr "جوجل"
+
+#: .\templates\accounts\login.html:19 .\templates\accounts\register.html:20
+#: .\templates\base\footer.html:16
+msgid "Facebook"
+msgstr "فيسبوك"
+
+#: .\templates\accounts\login.html:24
+msgid "Log in"
+msgstr "تسجيل الدخول"
+
+#: .\templates\accounts\logout.html:9
+msgid "You have logged out successfully"
+msgstr "لقد قمت بتسجيل الخروج بنجاح"
+
+#: .\templates\accounts\profile.html:25
+msgid "Edit Profile"
+msgstr "تعديل الملف الشخصي"
+
+#: .\templates\accounts\profile.html:34
+msgid "Profile Details"
+msgstr "تفاصيل الملف الشخصي"
+
+#: .\templates\accounts\profile.html:36
+msgid "Email Address: "
+msgstr "عنوان البريد الإلكتروني: "
+
+#: .\templates\accounts\profile.html:40
+msgid "Phone Number: "
+msgstr "رقم الهاتف: "
+
+#: .\templates\accounts\profile.html:44
+msgid "Gender: "
+msgstr "الجنس: "
+
+#: .\templates\accounts\profile.html:48
+msgid "City: "
+msgstr "مدينة: "
+
+#: .\templates\accounts\profile.html:52
+msgid "State: "
+msgstr "ولاية: "
+
+#: .\templates\accounts\profile.html:56
+msgid "Address: "
+msgstr "عنوان: "
+
+#: .\templates\accounts\profile.html:60
+msgid "Date of birth: "
+msgstr "تاريخ الولادة: "
+
+#: .\templates\accounts\profile.html:65
+msgid "Personal Cars"
+msgstr "سيارات شخصية"
+
+#: .\templates\accounts\profile.html:82
+msgid "Year"
+msgstr "سنة"
+
+#: .\templates\accounts\profile.html:88
+msgid "Car Number"
+msgstr "رقم السياره"
+
+#: .\templates\accounts\profile.html:118
+msgid "Status"
+msgstr "حالة"
+
+#: .\templates\accounts\profile.html:149
+msgid "Activity Log"
+msgstr "سجل النشاطات"
+
+#: .\templates\accounts\profile.html:156
+msgid "at"
+msgstr "في"
+
+#: .\templates\accounts\register.html:12 .\templates\accounts\register.html:24
+#: .\templates\base\nav.html:47
+msgid "Sign Up"
+msgstr "اشتراك"
+
+#: .\templates\accounts\user_change_password.html:4
+msgid "Update Password"
+msgstr "تطوير كلمة السر"
+
+#: .\templates\admin\index.html:3
+msgid "Dashboard"
+msgstr "لوحة الادارة"
+
+#: .\templates\base\footer.html:10
+msgid "We are a group of expert and gifted specialists in every."
+msgstr "تطوير كلمة السر"
+
+#: .\templates\base\footer.html:11
+msgid "Opens at:"
+msgstr "يفتح في:"
+
+#: .\templates\base\footer.html:15
+msgid "Social Media"
+msgstr "وسائل التواصل الاجتماعي"
+
+#: .\templates\base\footer.html:17 .\templates\base\footer.html:55
+msgid "Telegram"
+msgstr "تيليجرام"
+
+#: .\templates\base\footer.html:18
+msgid "Whatsapp"
+msgstr "واتساب"
+
+#: .\templates\base\footer.html:21 .\templates\base\footer.html:27
+msgid "About Website"
+msgstr "حول الموقع"
+
+#: .\templates\base\footer.html:23
+msgid "About Us"
+msgstr "معلومات عنا"
+
+#: .\templates\base\footer.html:28
+msgid "How it works?"
+msgstr "كيف تعمل؟"
+
+#: .\templates\base\footer.html:37
+msgid "FaceBook"
+msgstr "موقع التواصل الاجتماعي الفيسبوك"
+
+#: .\templates\base\footer.html:43
+msgid "Instagram"
+msgstr "انستغرام"
+
+#: .\templates\base\footer.html:49
+msgid "Twitter"
+msgstr "تويتر"
+
+#: .\templates\base\nav.html:19
+msgid "About"
+msgstr "معلومات عنا"
+
+#: .\templates\base\nav.html:25 .\workshop\models.py:67
+msgid "WorkShops"
+msgstr "ورش عمل"
+
+#: .\templates\base\nav.html:38
+msgid "Log Out"
+msgstr "تسجيل خروج"
+
+#: .\templates\base\nav.html:43
+msgid "Profile"
+msgstr "حساب تعريفي"
+
+#: .\templates\base\pagination.html:10 .\templates\base\pagination.html:13
+msgid "Previous"
+msgstr "السابق"
+
+#: .\templates\base\pagination.html:31 .\templates\base\pagination.html:34
+msgid "Next"
+msgstr "التالي"
+
+#: .\templates\blog\post\detail.html:9
+msgid "Back"
+msgstr "لخلف"
+
+#: .\templates\blog\post\list.html:8
+msgid "List of Posts"
+msgstr "قائمة المشاركات"
+
+#: .\templates\blog\post\list.html:32
+#: .\templates\workshop\workshop\list.html:43
+msgid "Read More.."
+msgstr "قراءة المزيد.."
+
+#: .\templates\booking\create.html:4
+msgid "Book"
+msgstr "كتاب"
+
+#: .\templates\car\create.html:4
+msgid "Add"
+msgstr "يضيف"
+
+#: .\templates\car\delete.html:4 .\templates\workshop\comment\delete.html:4
+#: .\templates\workshop\rate\delete.html:4
+#: .\templates\workshop\report_issue\delete.html:4
+msgid "Delete"
+msgstr "حذف"
+
+#: .\templates\form.html:23 .\templates\info\contact_us.html:4
+msgid "Submit"
+msgstr "إرسال"
+
+#: .\templates\home.html:12
+msgid "The road to"
+msgstr "الطريق إلى"
+
+#: .\templates\home.html:12
+msgid "adventure"
+msgstr "المغامرة"
+
+#: .\templates\home.html:12
+msgid "starts with a safe ride - book yours today!"
+msgstr "تبدأ برحلة آمنة - احجز لك اليوم!"
+
+#: .\templates\home.html:34 .\templates\workshop\workshop\detail.html:44
+msgid "Book Now"
+msgstr "احجز الآن"
+
+#: .\templates\home.html:51 .\templates\workshop\workshop\detail.html:110
+msgid "Discount of"
+msgstr "خصم من"
+
+#: .\templates\home.html:51
+msgid "service."
+msgstr "الخدمات"
+
+#: .\templates\home.html:52
+msgid "Details"
+msgstr "تفاصيل"
+
+#: .\templates\home.html:72
+msgid "Learn More"
+msgstr "اعرف أكثر"
+
+#: .\templates\home.html:80
+msgid "WORK WITH US"
+msgstr "اعمل معنا"
+
+#: .\templates\home.html:81
+msgid "Keep Your Car Running Smoothly with Our Expert Care !!!"
+msgstr "حافظ على سيارتك تعمل بسلاسة مع رعاية الخبراء لدينا !!!"
+
+#: .\templates\home.html:106
+msgid "Workshops"
+msgstr "ورش عمل"
+
+#: .\templates\home.html:118
+msgid "More.."
+msgstr "أكثر.."
+
+#: .\templates\home.html:137
+msgid "Valet"
+msgstr "خادم"
+
+#: .\templates\home.html:139
+msgid "Move your car without moving from your place. For more"
+msgstr "حرك سيارتك دون أن تتحرك من مكانك. للمزيد"
+
+#: .\templates\home.html:140 .\templates\home.html:150
+#: .\templates\home.html:160 .\templates\home.html:176
+#: .\templates\home.html:186 .\templates\home.html:196
+msgid "contact us"
+msgstr "اتصل بنا"
+
+#: .\templates\home.html:147
+msgid "Installment"
+msgstr "تقسيط"
+
+#: .\templates\home.html:149
+msgid ""
+" You don't need to pay all of your pills, you can split into parts over "
+"months. For more"
+msgstr "لست مضطرًا إلى دفع جميع أقراصك ، يمكنك تقسيمها إلى أجزاءشهور. للمزيد"
+
+#: .\templates\home.html:157
+msgid "Customer Support"
+msgstr "خدمه العملاء"
+
+#: .\templates\home.html:159
+msgid "We have an active customer support from"
+msgstr "لدينا دعم عملاء نشط من"
+
+#: .\templates\home.html:159
+msgid "to"
+msgstr "إلي"
+
+#: .\templates\home.html:159
+msgid "For more"
+msgstr "للمزيد"
+
+#: .\templates\home.html:173
+msgid "Share Ur Opinion"
+msgstr "مشاركة رأيك"
+
+#: .\templates\home.html:175
+msgid ""
+"Share your opinion with us, you can rate or comment on workshop. You can "
+"also report a problem. For more"
+msgstr ""
+"شاركنا برأيك ، يمكنك التقييم أو التعليق على ورشة العمل. يمكنكأبلغ أيضًا عن "
+"مشكلة. للمزيد"
+
+#: .\templates\home.html:183
+msgid "Discounts"
+msgstr "خصومات"
+
+#: .\templates\home.html:185
+msgid ""
+" We offer a variety of discounts and promo codes with no limit. For more"
+msgstr "نحن نقدم مجموعة متنوعة من الخصومات والرموز الترويجية بلا حدود. للمزيد"
+
+#: .\templates\home.html:193
+msgid "Gifts"
+msgstr "هدايا"
+
+#: .\templates\home.html:195
+msgid "Different gifts for each time you serve throw us. For more "
+msgstr "هدايا مختلفة في كل مرة تزرنا فيها. للمزيد"
+
+#: .\templates\workshop\rate\create.html:4 .\workshop\filters.py:16
+msgid "Rate"
+msgstr "تقيم"
+
+#: .\templates\workshop\report_issue\create.html:4
+#: .\templates\workshop\workshop\detail.html:27
+msgid "Report"
+msgstr "تقرير"
+
+#: .\templates\workshop\workshop\detail.html:12
+msgid "WorkShop Details"
+msgstr "تفاصيل ورشة العمل"
+
+#: .\templates\workshop\workshop\detail.html:38
+msgid "avg rating"
+msgstr "متوسط التقييم"
+
+#: .\templates\workshop\workshop\detail.html:38
+msgid "ratings"
+msgstr "تقييمات"
+
+#: .\templates\workshop\workshop\detail.html:73
+msgid "Video"
+msgstr "فيديو"
+
+#: .\templates\workshop\workshop\detail.html:82
+msgid "Our Services"
+msgstr "خدماتنا"
+
+#: .\templates\workshop\workshop\detail.html:99
+msgid "Discount / Offers"
+msgstr "الخصم / العروض"
+
+#: .\templates\workshop\workshop\detail.html:107
+msgid "Min"
+msgstr "الحد الأدنى"
+
+#: .\templates\workshop\workshop\detail.html:107
+msgid "Off"
+msgstr "إيقاف"
+
+#: .\templates\workshop\workshop\detail.html:107
+msgid "Free"
+msgstr "حر"
+
+#: .\templates\workshop\workshop\detail.html:110
+msgid "service"
+msgstr "الخدمات"
+
+#: .\templates\workshop\workshop\detail.html:132
+msgid "Location"
+msgstr "موقع"
+
+#: .\templates\workshop\workshop\detail.html:155
+msgid "Give a feedback:"
+msgstr "تقديم ملاحظات:"
+
+#: .\templates\workshop\workshop\list.html:23
+msgid "Choose Brand"
+msgstr "اختر علامة تجارية"
+
+#: .\templates\workshop\workshop\list.html:25
+msgid "Choose Service"
+msgstr "اختر الخدمة"
+
+#: .\templates\workshop\workshop\list.html:27
+msgid "Sort By Rate"
+msgstr "فرز حسب التقييم"
+
+#: .\templates\workshop\workshop\list.html:29
+msgid "Filter"
+msgstr "فلتر"
+
+#: .\workshop\admin.py:73
+msgid "Main Info"
+msgstr "معلومات الرئيسية"
+
+#: .\workshop\admin.py:75
+msgid "Statistics"
+msgstr "الإحصائيات"
+
+#: .\workshop\filters.py:17
+msgid "Rate (descending)"
+msgstr "تقيم (عكسي)"
+
+#: .\workshop\filters.py:31
+msgid "Search"
+msgstr "بحث"
+
+#: .\workshop\models.py:16
+#, python-format
+msgid "%(value)s is not a valid map link"
+msgstr "%(value)s ليس ارتباط خريطة صالحًا"
+
+#: .\workshop\models.py:22
+msgid "Related To Brand"
+msgstr "ذو صلة بالعلامة التجارية"
+
+#: .\workshop\models.py:23
+msgid "Not Related To Brand"
+msgstr "لا علاقة لها بعلامة تجارية"
+
+#: .\workshop\models.py:29
+msgid "Service Type"
+msgstr "نوع الخدمة"
+
+#: .\workshop\models.py:38 .\workshop\models.py:53
+msgid "Services"
+msgstr "خدمات"
+
+#: .\workshop\models.py:51
+msgid "Whatsapp number"
+msgstr "رقم واتساب"
+
+#: .\workshop\models.py:58
+msgid "Model Year Start"
+msgstr "بداية سنة الموديل"
+
+#: .\workshop\models.py:59
+msgid "Model Year End"
+msgstr "نهاية سنة الموديل"
+
+#: .\workshop\models.py:66
+msgid "WorkShop"
+msgstr "ورشة عمل"
+
+#: .\workshop\models.py:74
+msgid "Average Rate"
+msgstr "متوسط التقييم"
+
+#: .\workshop\models.py:78
+msgid "Count Rate"
+msgstr "عدد التقييمات"
+
+#: .\workshop\models.py:82
+msgid "Count Comment"
+msgstr "عدد التعليقات "
+
+#: .\workshop\models.py:86
+msgid "Count Report"
+msgstr "عدد التقارير"
+
+#: .\workshop\models.py:108 .\workshop\models.py:123
+msgid "Link"
+msgstr "رابط"
+
+#: .\workshop\models.py:112
+msgid "WorkShop Location"
+msgstr "موقع ورشة العمل"
+
+#: .\workshop\models.py:113
+msgid "WorkShop Locations"
+msgstr "مواقع ورش العمل"
+
+#: .\workshop\models.py:117
+msgid "Show Map"
+msgstr "عرض الخريطة"
+
+#: .\workshop\models.py:126
+msgid "Work Shop Video"
+msgstr "فيديو ورشة العمل"
+
+#: .\workshop\models.py:127
+msgid "Work Shop Videos"
+msgstr "مقاطع فيديو ورشة العمل"
+
+#: .\workshop\models.py:131
+msgid "Show Link"
+msgstr "عرض الرابط"
+
+#: .\workshop\models.py:142
+msgid "Rating"
+msgstr "تقييم"
+
+#: .\workshop\models.py:143
+msgid "Ratings"
+msgstr "التقييمات"
+
+#: .\workshop\models.py:168
+msgid "Suggestion"
+msgstr "اقتراح"
+
+#: .\workshop\models.py:170
+msgid ""
+"Upload any kind of attachment that could help to clarify more about the issue"
+msgstr ""
+"قم بتحميل أي نوع من أنواع المرفقات التي يمكن أن تساعد في توضيح المزيد حول "
+"المشكلة"
+
+#: .\workshop\models.py:171
+msgid "Attachment"
+msgstr "مرفق"
+
+#: .\workshop\models.py:172
+msgid "When the issue occurred?"
+msgstr "متى حدثت المشكلة؟"
+
+#: .\workshop\models.py:180
+msgid "Report Issue"
+msgstr "قضية تقرير"
+
+#: .\workshop\models.py:181
+msgid "Report Issues"
+msgstr "الإبلاغ عن مشاكل"

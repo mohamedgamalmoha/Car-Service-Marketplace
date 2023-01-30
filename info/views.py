@@ -10,51 +10,42 @@ class ContactUsView(CreateView):
     form_class = ContactUsForm
     success_url = reverse_lazy('home')
     template_name = "info/contact_us.html"
-    extra_context = {'title': 'Contact Us'}
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['title'] = self.model._meta.verbose_name
+        return context
 
 
 class BaseListView(ListView):
     context_object_name = 'objects'
     template_name = 'info/content.html'
 
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['title'] = self.model._meta.verbose_name
+        return context
+
 
 class FAQsListView(BaseListView):
     model = FAQs
-    extra_context = {
-        'title': 'FAQs'
-    }
 
 
 class AboutUsListView(BaseListView):
     model = AboutUs
-    extra_context = {
-        'title': 'About Us'
-    }
 
 
 class TermsOfServiceListView(BaseListView):
     model = TermsOfService
-    extra_context = {
-        'title': 'Terms Of Service'
-    }
 
 
 class WorksListView(BaseListView):
     model = Works
-    extra_context = {
-        'title': 'How it works'
-    }
 
 
 class CookiePolicyListView(BaseListView):
     model = CookiePolicy
-    extra_context = {
-        'title': 'Cookie Policy'
-    }
 
 
 class PrivacyPolicyListView(BaseListView):
     model = PrivacyPolicy
-    extra_context = {
-        'title': 'Privacy Policy'
-    }

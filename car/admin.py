@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
+from modeltranslation.admin import TranslationAdmin
+
 from .models import Car, Brand
 
 
@@ -17,7 +19,7 @@ class CarModalYearListFilter(admin.SimpleListFilter):
         return queryset.filter(model_year__year=self.value())
 
 
-class BrandAdmin(admin.ModelAdmin):
+class BrandAdmin(TranslationAdmin):
     list_display = ['name', 'created', 'updated', 'show_image']
     readonly_fields = ['show_image']
     search_fields = ('name', )

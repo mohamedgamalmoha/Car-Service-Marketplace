@@ -1,4 +1,7 @@
 from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
+
+from modeltranslation.admin import TranslationAdmin, TranslationTabularInline
 
 from .models import Service, WorkShop, WorkShopLocation, WorkShopVideo, Rate, Comment, ReportIssue
 
@@ -32,7 +35,7 @@ class ReportIssueInlineAdmin(admin.TabularInline):
     readonly_fields = ('customer', 'title', 'description',  'suggestion', 'date_of_issue', 'attachment')
 
 
-class WorkShopLocationInlineAdmin(admin.TabularInline):
+class WorkShopLocationInlineAdmin(TranslationTabularInline):
     model = WorkShopLocation
     extra = 1
     min_num = 1
@@ -41,7 +44,7 @@ class WorkShopLocationInlineAdmin(admin.TabularInline):
     readonly_fields = ('show_map', )
 
 
-class WorkShopVideoInlineAdmin(admin.TabularInline):
+class WorkShopVideoInlineAdmin(TranslationTabularInline):
     model = WorkShopVideo
     extra = 1
     min_num = 0
@@ -50,27 +53,27 @@ class WorkShopVideoInlineAdmin(admin.TabularInline):
     readonly_fields = ('show_link', )
 
 
-class ServiceAdmin(admin.ModelAdmin):
+class ServiceAdmin(TranslationAdmin):
     list_display = ('name', 'service_type', 'created', 'updated')
     list_filter = ('service_type', )
     search_fields = ('name', )
 
 
-class WorkShopAdmin(admin.ModelAdmin):
+class WorkShopAdmin(TranslationAdmin):
     list_display = ('name', 'avg_rate', 'count_rate', 'count_comment', 'count_reports', 'created', 'updated')
     inlines = (
-        WorkShopLocationInlineAdmin,
-        WorkShopVideoInlineAdmin,
-        RateInlineAdmin,
-        CommentInlineAdmin,
-        ReportIssueInlineAdmin
+         WorkShopLocationInlineAdmin,
+         WorkShopVideoInlineAdmin,
+         RateInlineAdmin,
+         CommentInlineAdmin,
+         ReportIssueInlineAdmin
     )
     readonly_fields = ('show_image', 'avg_rate', 'count_rate', 'count_comment', 'count_reports')
     fieldsets = (
-        ('Main Info', {"fields": ('name', 'description', ('phone_number', 'whatsapp'), 'brands', 'services', )}),
-        ('Image', {"fields": ("image", "show_image")}),
-        ('Statistics', {"fields": ('avg_rate', 'count_rate', 'count_comment', 'count_reports')}),
-    )
+         (_('Main Info'), {"fields": ('name', 'description', ('phone_number', 'whatsapp'), 'brands', 'services', )}),
+         (_('Image'), {"fields": ("image", "show_image")}),
+         (_('Statistics'), {"fields": ('avg_rate', 'count_rate', 'count_comment', 'count_reports')}),
+     )
     list_filter = ('brands', 'services')
     search_fields = ('name', 'description')
 

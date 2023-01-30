@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% load i18n %}
 
 {% block content %}
 <!-- Details Section -->
@@ -8,15 +8,13 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb pb-5">
             <li class="breadcrumb-item active text-decoration-none"><a href="{% url 'home' %}"
-                    class="active text-decoration-none">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">WorkShop Details</li>
+                    class="active text-decoration-none">{% translate "Home" %}</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{% translate "WorkShop Details" %}</li>
         </ol>
     </nav>
     <div class="row gap-md-0 gap-4 align-items-center justify-content-between">
-
         <div class="col-md-5">
-            <img src="{% if workshop.image %}{{ workshop.image.url }}{% else %}{% static 'images/workshop.png' %}{% endif %}" height="400" style="object-fit: cover; border-radius: 15px; background: #3F3F3E"
-                alt="details" class="w-100">
+            <img src="{% if workshop.image %}{{ workshop.image.url }}{% else %}{% static 'images/workshop.png' %}{% endif %}" height="400" style="object-fit: cover; border-radius: 15px; background: #3F3F3E" alt="details" class="w-100">
         </div>
         <div class="col-md-6">
             <div class="d-flex justify-content-between align-items-center">
@@ -26,7 +24,7 @@
                     {% csrf_token %}
                     <input type="hidden" name="workshop" value="{{ workshop.id }}">
                     <button class="px-2 py-1 border-0  bg-transparent" style="width: fit-content;" title="Edit Car" type="submit">
-                        <a onclick="this.parent.click()" title="Report this workshop"><i class="fa-sharp fa-solid fa-flag" style="color: #F40612;">&nbsp; Report</i></a>
+                        <a onclick="this.parent.click()" title="Report this workshop"><i class="fa-sharp fa-solid fa-flag" style="color: #F40612;">&nbsp;{% translate "Report" %}</i></a>
                     </button>
                 </form>
                 {% endif %}
@@ -37,13 +35,13 @@
                     <i class="{{rate}} fa-star text-warning"></i>
                     {% endfor %}
                 </div>
-                ({{ workshop.avg_rate }}) avg rating | {{ workshop.count_rate }} ratings
+                ({{ workshop.avg_rate }}) {% translate "avg rating" %} | {{ workshop.count_rate }} {% translate "ratings" %}
             </div>
             <div>{{ workshop.description|safe }}</div>
             <form method="POST" action="{% url 'booking:create_without_discount' %}">
                 {% csrf_token %}
                 <input type="hidden" value="{{ workshop.id }}" name="workshop">
-                <input type="submit" value="Book Now" class="primary-color text-decoration-none rounded-3 px-4 py-2 fw-bold text-white d-flex" style="width: fit-content;">
+                <input type="submit" value="{% translate 'Book Now' %}" class="primary-color text-decoration-none rounded-3 px-4 py-2 fw-bold text-white d-flex" style="width: fit-content;">
             </form>
         </div>
     </div>
@@ -51,7 +49,7 @@
 
 <!-- Brands Section -->
 <section id="brands" class="container py-5">
-    <p class="fs-4 fw-bold text-white text-center"> Brands</p>
+    <p class="fs-4 fw-bold text-white text-center">{% translate "Brands" %}</p>
     <div class="swiper mySwiper2 py-5" style="max-width: 1000px;">
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper ">
@@ -72,7 +70,7 @@
 
 <!-- Video Section -->
 <section class="container py-5">
-    <p class="fs-4 fw-bold text-white text-center mb-5">Video</p>
+    <p class="fs-4 fw-bold text-white text-center mb-5">{% translate "Video" %}</p>
     <div class="row justify-content-center">
         <iframe  width="560" height="400" src="{{ workshop.video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
@@ -81,7 +79,7 @@
 <!-- Services Section -->
 <section class="container py-5">
     <div class="row justify-content-around">
-        <p class="fs-4 fw-bold text-white text-center mb-5">Our Services</p>
+        <p class="fs-4 fw-bold text-white text-center mb-5">{% translate "Our Services" %}</p>
         {% for service in workshop.services.all %}
         <div class="col-md-3 d-flex flex-column gap-5">
             <div class="d-flex gap-4 ">
@@ -98,7 +96,7 @@
 
 <!-- Discount Section -->
 <section class="container py-5">
-    <p class="fs-4 fw-bold text-white text-center">Discount / Offers</p>
+    <p class="fs-4 fw-bold text-white text-center">{% translate "Discount / Offers" %}</p>
     <div class="swiper mySwiper3 py-5">
         <!-- Additional Required Wrapper -->
         <div class="swiper-wrapper ">
@@ -106,10 +104,10 @@
             {% for discount in workshop.discounts.all %}
             <div class="swiper-slide position-relative d-flex flex-column justify-content-center align-items-center gap-3 p-3 pt-5 text-center discount">
                 <p class="position-absolute discount-number px-3 py-2 text-white fw-bold rounded-circle primary-color">
-                    {{ discount.value|floatformat:2 }} {% if discount.type == "0" %}<br>Min{% elif discount.type == "1" %}% <br>Off{% elif discount.type == "2" %}<br>Free{% endif %}
+                    {{ discount.value|floatformat:2 }} {% if discount.type == "0" %}<br>{% translate "Min" %} {% elif discount.type == "1" %}% <br>{% translate "Off" %} {% elif discount.type == "2" %}<br>{% translate "Free" %} {% endif %}
                 </p>
                 <p class="fw-bold text-white fs-5 m-0 pt-3">{{ discount.get_type_display }}</p>
-                <p class="text-light m-0">Discount of {{ discount.service }} service</p>
+                <p class="text-light m-0">{% translate "Discount of" %} {{ discount.service }} {% translate "service" %}</p>
                 <form  method="POST" action="{% url 'booking:create_with_discount' %}">
                     {% csrf_token %}
                     <input type="hidden" value="{{ discount.workshop.id }}" name="workshop">
@@ -131,7 +129,7 @@
     <div class="row">
         {% for location in workshop.locations.all %}
         <div class="col-md-6">
-            <p class="text-secondary mb-1">Location ({{ forloop.counter}}):</p>
+            <p class="text-secondary mb-1">{% translate "Location" %} ({{ forloop.counter}}):</p>
             {{ location.link|safe }}
         </div>
         {% endfor %}
@@ -154,7 +152,7 @@
             {% csrf_token %}
             <fieldset class="star-rating">
                 <input type="hidden" value="{{ workshop.id }}" name="workshop">
-                <legend class="text-light text-muted" style="font-size: 16px;">Give a feedback:</legend>
+                <legend class="text-light text-muted" style="font-size: 16px;">{% translate "Give a feedback:" %}</legend>
                 <div class="star-rating__stars my-3" title="Rate this workshop">
                     <input class="star-rating__input" type="radio" name="value" value="1" id="feedback-1"/>
                     <label class="star-rating__label" for="feedback-1" aria-label="One"></label>

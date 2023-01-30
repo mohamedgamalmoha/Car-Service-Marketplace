@@ -1,5 +1,7 @@
 from django.contrib import admin
 
+from modeltranslation.admin import TranslationAdmin
+
 from .models import Post, PostComment
 
 
@@ -12,7 +14,7 @@ class PostCommentInlineAdmin(admin.TabularInline):
     readonly_fields = ('customer', 'title', 'comment', 'created', 'updated')
 
 
-class PostAdmin(admin.ModelAdmin):
+class PostAdmin(TranslationAdmin):
     list_display = ('title', 'is_active', 'created', 'updated')
     search_fields = ('title', 'body')
     list_filter = ('is_active', 'created', 'updated')

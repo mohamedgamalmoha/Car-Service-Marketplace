@@ -19,7 +19,7 @@ class BookingStatus(models.TextChoices):
 
     @classmethod
     def customer_choices(cls):
-        return (cls.PLACED, 'PLACED'), (cls.CANCELED, 'CANCELED')
+        return (cls.PLACED, _('PLACED')), (cls.CANCELED, _('CANCELED'))
 
 
 class BookingCommissionStatus(models.TextChoices):
@@ -52,8 +52,8 @@ class Coupon(models.Model):
     valid_from = models.DateField(verbose_name=_('Valid From'), null=True, blank=True)
     valid_until = models.DateField(verbose_name=_('Valid Till'),
                                    help_text=_("Leaving this field empty will generate a random code."))
-    create_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creation Date'))
-    update_at = models.DateTimeField(auto_now=True, verbose_name=_('Update Date'))
+    create_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creation'))
+    update_at = models.DateTimeField(auto_now=True, verbose_name=_('Update'))
 
     class Meta:
         ordering = ('create_at', )
@@ -110,8 +110,8 @@ class Discount(models.Model):
     valid_from = models.DateField(verbose_name=_('Valid From'))
     valid_until = models.DateField(verbose_name=_('Valid Till'),
                                    help_text=_("Leaving this field empty will generate a random code."))
-    create_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creation Date'))
-    update_at = models.DateTimeField(auto_now=True, verbose_name=_('Update Date'))
+    create_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creation'))
+    update_at = models.DateTimeField(auto_now=True, verbose_name=_('Update'))
 
     class Meta:
         ordering = ('create_at', )
@@ -173,8 +173,12 @@ class Booking(models.Model):
     note = models.TextField(max_length=400, blank=True, null=True, verbose_name=_('Note'),
                             help_text=_("Tell us more about car issues and parts that need to be maintained ...etc. "))
     schedule_at = models.DateTimeField(verbose_name=_('Schedule At'), help_text=_('When would you like to book?'))
-    create_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creation Date'))
-    update_at = models.DateTimeField(auto_now=True, verbose_name=_('Update Date'))
+    create_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creation'))
+    update_at = models.DateTimeField(auto_now=True, verbose_name=_('Update'))
+
+    class Meta:
+        verbose_name = _("Booking")
+        verbose_name_plural = _("Bookings")
 
     def save(self, *args, **kwargs):
         # if the service is in workshop services'
@@ -214,21 +218,25 @@ class Booking(models.Model):
             discount += self.coupon.calculate_discount(price)
         return discount
 
-    @property
     def customer_phone_number(self):
         return self.customer.profile.phone_number
+    customer_phone_number.short_description = _("Phone Number")
 
-    @property
     def customer_whatsapp_link(self):
         return f"https://wa.me/+2{self.customer_phone_number}"
+    customer_whatsapp_link.short_description = _("Whatsapp Link")
 
 
 class Expense(models.Model):
     cause = models.CharField(verbose_name=_('Cause'), max_length=500, help_text=_('What is this expense for?'))
     amount = models.DecimalField(verbose_name=_('Amount'), decimal_places=2, max_digits=8, null=True, blank=True, default=0)
     paid_at = models.DateTimeField(verbose_name=_('Paid At'), help_text=_('When this expense is paid?'))
-    create_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creation Date'))
-    update_at = models.DateTimeField(auto_now=True, verbose_name=_('Update Date'))
+    create_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Creation'))
+    update_at = models.DateTimeField(auto_now=True, verbose_name=_('Update'))
+
+    class Meta:
+        verbose_name = _("Expense")
+        verbose_name_plural = _("Expenses")
 
 
 @receiver(pre_save, sender=Booking)

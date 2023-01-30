@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
+
 
 {% block subtitle %} Home Page {% endblock %}
 
@@ -7,8 +9,7 @@
 <!-- Header Section -->
 <header class="container hero py-5 ">
     <h1 class="display-5 text-center w-75 m-auto fw-bold text-white">
-        The road to <span class="active">adventure</span> starts with a safe
-        ride - book yours today!
+        {% translate "The road to" %} <span class="active"> {% translate "adventure" %} </span>{% translate "starts with a safe ride - book yours today!" %}
     </h1>
     <div class="swiper mySwiper py-5" style="border-radius: 16px;">
         <!-- Additional Required Wrapper -->
@@ -30,13 +31,13 @@
         <div class="swiper-button-next"></div>
     </div>
     <div class="d-flex justify-content-center align-items-center py-5">
-        <a href="{% url 'workshop:workshop_list' %}" class="px-4 py-2 border border-secondary text-decoration-none text-white" style="z-index: 2;">Book Now</a>
+        <a href="{% url 'workshop:workshop_list' %}" class="px-4 py-2 border border-secondary text-decoration-none text-white" style="z-index: 2;">{% translate "Book Now" %}</a>
     </div>
 </header>
 
 <!-- Discount Section -->
 <section class="container py-5">
-    <p class="fs-4 fw-bold text-white text-center">Discount</p>
+    <p class="fs-4 fw-bold text-white text-center">{% translate "Discount" %}</p>
     <div class="swiper mySwiper3 py-5">
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper ">
@@ -47,8 +48,8 @@
                     {{ discount.value|floatformat:2 }} {% if discount.type == "0" %}<br>Min{% elif discount.type == "1" %}% <br>Off{% elif discount.type == "2" %}<br>Free{% endif %}
                 </p>
                 <p class="fw-bold text-white fs-5 m-0 pt-3">{{ discount.get_type_display }}</p>
-                <p class="text-light m-0">Discount of {{ discount.service }} service.</p>
-                <a href="{% url 'workshop:workshop_detail' discount.workshop.id %}" class="px-4 py-2 primary-color fw-bold text-decoration-none text-white d-inline-block mt-3">Details</a>
+                <p class="text-light m-0">{% translate "Discount of" %} {{ discount.service }} {% translate "service." %}</p>
+                <a href="{% url 'workshop:workshop_detail' discount.workshop.id %}" class="px-4 py-2 primary-color fw-bold text-decoration-none text-white d-inline-block mt-3">{% translate "Details" %}</a>
             </div>
             {% endfor %}
         </div>
@@ -66,9 +67,9 @@
             <img class="position-absolute about-img second d-md-block d-none" src="{% static 'images/why_us_2.jpg' %}" alt="about">
         </div>
         <div class="col-md-4">
-            <p class="mb-3 fw-bold text-white fs-3">Why do you choose us?</p>
+            <p class="mb-3 fw-bold text-white fs-3">{% translate "Why do you choose us?" %}</p>
             <p class="mb-3  text-muted text-light">{{ main_info.why_us }}</p>
-            <a href="{% url 'info:about_us' %}" class="px-4 py-2 primary-color fw-bold text-decoration-none text-white d-inline-block mt-3">Learn More</a>
+            <a href="{% url 'info:about_us' %}" class="px-4 py-2 primary-color fw-bold text-decoration-none text-white d-inline-block mt-3">{% translate "Learn More" %}</a>
         </div>
     </div>
 </section>
@@ -76,14 +77,14 @@
 <!-- Banner Section -->
 <section class="py-5 workSection" style=";background-image: url('{% static 'images/work_with_us.jpg' %}');">
     <div class="w-75 py-5 text-center m-auto position-relative" style="z-index: 2;">
-        <p class="fs-2 fw-bold text-white pb-3">WORK WITH US </p>
-        <p class="fs-4  text-light">Keep Your Car Running Smoothly with Our Expert Care !!!</p>
+        <p class="fs-2 fw-bold text-white pb-3">{% translate "WORK WITH US" %}</p>
+        <p class="fs-4  text-light">{% translate "Keep Your Car Running Smoothly with Our Expert Care !!!" %}</p>
     </div>
 </section>
 
 <!-- Brands Section -->
 <section id="brands" class="container py-5">
-    <p class="fs-4 fw-bold text-white text-center">Brands</p>
+    <p class="fs-4 fw-bold text-white text-center">{% translate "Brands" %}</p>
     <div class="swiper mySwiper2 py-5">
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper ">
@@ -102,7 +103,7 @@
 
 <!-- Workshops Section -->
 <section id="workshop" class="container py-5">
-    <p class="fs-4 fw-bold text-white text-center">Workshops</p>
+    <p class="fs-4 fw-bold text-white text-center">{% translate "Workshops" %}</p>
     <div class="swiper mySwiper3 py-5">
         <!-- Additional required wrapper -->
         <div class="swiper-wrapper ">
@@ -114,7 +115,7 @@
                     <p class="text-white fw-bold">{{ workshop.name }}</p>
                     <p class="text-light text-center">
                         {{ workshop.description|striptags|truncatechars_html:100 }}.<br>
-                        <a href="{% url 'workshop:workshop_detail' workshop.id %}" class="text-light">More..</a>
+                        <a href="{% url 'workshop:workshop_detail' workshop.id %}" class="text-light">{% translate "More.." %}</a>
                     </p>
                 </div>
             </div>
@@ -133,27 +134,30 @@
            <div class="d-flex gap-4 ">
             <i class="fa-solid fa-car fs-1 active"></i>
             <div>
-                <p class="fs-5 fw-bold text-white mb-1">Valet</p>
+                <p class="fs-5 fw-bold text-white mb-1">{% translate "Valet" %}</p>
                 <p class="text-muted">
-                    Move your car without moving from your place. For more <a class="active text-decoration-none" href="{{ main_info.whatsapp_link }}"><span>contact us</span></a>
+                    {% translate "Move your car without moving from your place. For more" %}
+                    <a class="active text-decoration-none" href="{{ main_info.whatsapp_link }}"><span>{% translate "contact us" %}</span></a>
                 </p>
             </div>
            </div>
            <div class="d-flex gap-4 ">
             <i class="fa-solid fa-money-bill fs-1 active"></i>
             <div>
-                <p class="fs-5 fw-bold text-white mb-1">Installment</p>
+                <p class="fs-5 fw-bold text-white mb-1">{% translate "Installment" %}</p>
                 <p class="text-muted">
-                    You don't need to pay all of your pills, you can split into parts over months. For more <a class="active text-decoration-none"  href="{{ main_info.whatsapp_link }}"><span>contact us</span></a>
+                    {% translate " You don't need to pay all of your pills, you can split into parts over months. For more" %}
+                    <a class="active text-decoration-none"  href="{{ main_info.whatsapp_link }}"><span>{% translate "contact us" %}</span></a>
                 </p>
             </div>
            </div>
            <div class="d-flex gap-4 ">
             <i class="fa-solid fa-phone-volume fs-1 active"></i>
             <div>
-                <p class="fs-5 fw-bold text-white mb-1"> Customer Support</p>
+                <p class="fs-5 fw-bold text-white mb-1">{% translate "Customer Support" %}</p>
                 <p class="text-muted">
-                    We have an active customer support from({{ main_info.open_at }}) to({{ main_info.close_at }}). For more <a class="active text-decoration-none"  href="{{ main_info.whatsapp_link }}"><span>contact us</span></a>
+                    {% translate "We have an active customer support from" %} ({{ main_info.open_at }}) {% translate "to" %} ({{ main_info.close_at }}).{% translate "For more" %}
+                    <a class="active text-decoration-none"  href="{{ main_info.whatsapp_link }}"><span>{% translate "contact us" %}</span></a>
                 </p>
             </div>
            </div>
@@ -166,27 +170,30 @@
             <div class="d-flex gap-4 ">
              <i class="fa-solid fa-comments fs-1 active"></i>
              <div>
-                 <p class="fs-5 fw-bold text-white mb-1">Share Ur Opinion</p>
+                 <p class="fs-5 fw-bold text-white mb-1">{% translate "Share Ur Opinion" %}</p>
                  <p class="text-muted">
-                     Share your opinion with us, you can rate or comment on workshop. You can also report a problem. For more <a class="active text-decoration-none" href="{{ main_info.whatsapp_link }}"><span>contact us</span></a>
+                     {% translate "Share your opinion with us, you can rate or comment on workshop. You can also report a problem. For more" %}
+                     <a class="active text-decoration-none" href="{{ main_info.whatsapp_link }}"><span>{% translate "contact us" %}</span></a>
                  </p>
              </div>
             </div>
             <div class="d-flex gap-4">
              <i class="fa-solid fa-percent fs-1 active"></i>
              <div>
-                 <p class="fs-5 fw-bold text-white mb-1">Discounts</p>
+                 <p class="fs-5 fw-bold text-white mb-1">{% translate "Discounts" %}</p>
                  <p class="text-muted">
-                     We offer a variety of discounts and promo codes with no limit. For more <a class="active text-decoration-none" href="{{ main_info.whatsapp_link }}"><span>contact us</span></a>
+                     {% translate " We offer a variety of discounts and promo codes with no limit. For more" %}
+                     <a class="active text-decoration-none" href="{{ main_info.whatsapp_link }}"><span>{% translate "contact us" %}</span></a>
                  </p>
              </div>
             </div>
             <div class="d-flex gap-4 ">
              <i class="fa-solid fa-gift fs-1 active"></i>
              <div>
-                 <p class="fs-5 fw-bold text-white mb-1">Gifts</p>
+                 <p class="fs-5 fw-bold text-white mb-1">{% translate "Gifts" %}</p>
                  <p class="text-muted">
-                     Different gifts for each time you servie throw us. For more <a class="active text-decoration-none" href="{{ main_info.whatsapp_link }}"><span>contact us</span></a>
+                     {% translate "Different gifts for each time you serve throw us. For more " %}
+                     <a class="active text-decoration-none" href="{{ main_info.whatsapp_link }}"><span>{% translate "contact us" %}</span></a>
                  </p>
              </div>
             </div>

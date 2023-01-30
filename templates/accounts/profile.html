@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 
 {% block content %}
@@ -21,7 +22,7 @@
                 </div>
                 <div class="d-flex gap-2">
                     <a href="{% url 'accounts:profile_update' %}" class="btn text-white shadow-none d-flex align-items-center gap-2"><i
-                            class="fa-solid fa-pen"></i> Edit Profile</a>
+                            class="fa-solid fa-pen"></i> {% translate "Edit Profile" %} </a>
                     <button class="btn text-white shadow-none d-flex align-items-center gap-2" data-bs-toggle="modal"
                             data-bs-target="#staticBackdrop"><i class="fa-solid fa-ellipsis"></i></button>
                 </div>
@@ -30,38 +31,38 @@
     </div>
     <div class="row mt-3 justify-content-between align-items-start gap-4">
         <div class="col p-3" style="background-color: #222; border-radius: 15px;">
-            <p class="text-muted">Profile Details</p>
+            <p class="text-muted">{% translate "Profile Details" %}</p>
             <div class="d-flex gap-2 my-3">
-                <p class="fw-bold text-white  m-0">Email Address: </p>
+                <p class="fw-bold text-white  m-0">{% translate "Email Address: " %}</p>
                 <p class="fw-normal text-white m-0">{{ customer.user.email }}</p>
             </div>
             <div class="d-flex gap-2 my-3">
-                <p class="fw-bold text-white  m-0">Phone Number: </p>
+                <p class="fw-bold text-white  m-0">{% translate "Phone Number: " %}</p>
                 <p class="fw-normal text-white m-0">{{ customer.phone_number }}</p>
             </div>
             <div class="d-flex my-3 gap-2">
-                <p class="fw-bold text-white  m-0">Gender: </p>
+                <p class="fw-bold text-white  m-0">{% translate "Gender: " %}</p>
                 <p class="fw-normal text-white m-0">{{ customer.gender }}</p>
             </div>
             <div class="d-flex my-3 gap-2">
-                <p class="fw-bold text-white  m-0">City: </p>
+                <p class="fw-bold text-white  m-0">{% translate "City: " %}</p>
                 <p class="fw-normal text-white m-0">{{ customer.city }}</p>
             </div>
             <div class="d-flex my-3 gap-2">
-                <p class="fw-bold text-white  m-0">State: </p>
+                <p class="fw-bold text-white  m-0">{% translate "State: " %}</p>
                 <p class="fw-normal text-white m-0">{{ customer.state }}<</p>
             </div>
             <div class="d-flex my-3 gap-2">
-                <p class="fw-bold text-white  m-0">Address: </p>
+                <p class="fw-bold text-white  m-0">{% translate "Address: " %}</p>
                 <p class="fw-normal text-white m-0">{{ customer.address }}<</p>
             </div>
             <div class="d-flex my-3 gap-2">
-                <p class="fw-bold text-white  m-0">Date of birth: </p>
+                <p class="fw-bold text-white  m-0">{% translate "Date of birth: " %}</p>
                 <p class="fw-normal text-white m-0">{{ customer.date_of_birth }}</p>
             </div>
         </div>
         <div class="col-lg-8 d-flex flex-column gap-4 ">
-            <p class="fw-bold text-white m-0 fs-4">Personal Cars <span style="padding-left: 10px;" title="Add Car"><a href="{% url 'car:create' %}"><i class="fa-solid fa-add" style="color:#F40612;"></i></a></span></p>
+            <p class="fw-bold text-white m-0 fs-4">{% translate "Personal Cars" %}<span style="padding-left: 10px;" title="Add Car"><a href="{% url 'car:create' %}"><i class="fa-solid fa-add" style="color:#F40612;"></i></a></span></p>
             {% if user.cars %}
             {% for car in user.cars.all %}
                 <div class="row p-0 d-flex align-items-center position-relative" style="background-color: #222; border-radius: 15px; overflow: hidden;">
@@ -70,25 +71,25 @@
                 </div>
                 <div class="col-md-4 p-3">
                     <div class="d-flex gap-2 my-3">
-                        <p class="fw-bold text-white">Brand</p>
+                        <p class="fw-bold text-white">{% translate "Brand" %}</p>
                         <p class="text-white">{{ car.brand.name }}</p>
                     </div>
                     <div class="d-flex gap-2 my-3">
-                        <p class="fw-bold text-white">Model</p>
+                        <p class="fw-bold text-white">{% translate "Model" %}</p>
                         <p class="text-white">{{ car.model }}</p>
                     </div>
                     <div class="d-flex gap-2 my-3">
-                        <p class="fw-bold text-white">Year</p>
+                        <p class="fw-bold text-white">{% translate "Year" %}</p>
                         <p class="text-white">{{ car.model_year }}</p>
                     </div>
                 </div>
                 <div class="col-md-4 p-3">
                     <div class="d-flex gap-2 my-3">
-                        <p class="fw-bold text-white">Car Number</p>
+                        <p class="fw-bold text-white">{% translate "Car Number" %}</p>
                         <p class="text-white">{{ car.number }}</p>
                     </div>
                     <div class="d-flex gap-2 my-3">
-                        <p class="fw-bold text-white">Color.</p>
+                        <p class="fw-bold text-white">{% translate "Color" %}</p>
                         <p class="text-white">{{ car.color }}</p>
                     </div>
                 </div>
@@ -101,32 +102,32 @@
             {# Add Car #}
             {% endif %}
 
-            <p class="fw-bold text-white m-0 fs-4">Bookings</p>
+            <p class="fw-bold text-white m-0 fs-4">{% translate "Bookings" %}</p>
             {% for booking in user.bookings.all %}
             <div class="row p-0 d-flex align-items-center" style="background-color: #222; border-radius: 15px; overflow: hidden;">
                 <div class="flex-wrap p-5 d-flex gap-3 position-relative">
                     <div class="d-flex gap-2 ">
-                        <p class="fw-bold m-0 text-white">Workshop</p>
+                        <p class="fw-bold m-0 text-white">{% translate "Workshop" %}</p>
                         <p class="text-white m-0">{{ booking.workshop }}</p>
                     </div>
                     <div class="d-flex gap-2 ">
-                        <p class="fw-bold m-0 text-white">Service</p>
+                        <p class="fw-bold m-0 text-white">{% translate "Service" %}</p>
                         <p class="text-white m-0">{{ booking.service }}</p>
                     </div>
                     <div class="d-flex gap-2 ">
-                        <p class="fw-bold m-0 text-white">Status</p>
+                        <p class="fw-bold m-0 text-white">{% translate "Status" %}</p>
                         <p class="text-white m-0">{{ booking.get_status_display }}</p>
                     </div>
                     <div class="d-flex gap-2 ">
-                        <p class="fw-bold m-0 text-white">Brand</p>
+                        <p class="fw-bold m-0 text-white">{% translate "Brand" %}</p>
                         <p class="text-white m-0">{{ booking.car.brand }}</p>
                     </div>
                     <div class="d-flex gap-2 ">
-                        <p class="fw-bold m-0 text-white">Estimated Price</p>
+                        <p class="fw-bold m-0 text-white">{% translate "Estimated Price" %}</p>
                         <p class="text-white m-0">{{ booking.estimated_price }}</p>
                     </div>
                     <div class="d-flex gap-2 ">
-                        <p class="fw-bold m-0 text-white">Schedule At</p>
+                        <p class="fw-bold m-0 text-white">{% translate "Schedule At" %}</p>
                         <p class="text-white m-0">{{ booking.schedule_at }}</p>
                     </div>
                     <button class="px-2 py-1 border-0 position-absolute bg-transparent" style="width: fit-content; right: 15px; top: 15px;" title="Edit Car">
@@ -145,14 +146,14 @@
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content" style="background-color: #222;">
             <div class="d-flex justify-content-between align-items-center p-3" style="border-bottom: 1px solid #f406124e;">
-                <h5 class="modal-title text-white" id="staticBackdropLabel">Activity Log</h5>
+                <h5 class="modal-title text-white" id="staticBackdropLabel">{% translate "Activity Log" %}</h5>
                 <button type="button" class="btn-close shadow-none btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="pb-3" style="max-height: 400px; overflow-y: auto;">
                 {% for activity in activities %}
                 <div class="d-flex align-items-center gap-3 flex-wrap p-3 " style="border-bottom: 1px solid #f406124e;">
                     <i class="{{ activity.icon }} active fs-5"></i>
-                    <a href="" class="text-decoration-none text-white">{{ activity.action }} at</a>
+                    <a href="" class="text-decoration-none text-white">{{ activity.action }} {% translate "at" %}</a>
                     <p class="m-0 text-secondary">{{ activity.created }}</p>
                 </div>
                 {% endfor %}

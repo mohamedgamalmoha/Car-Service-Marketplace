@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+
 <!-- NavBar Section -->
 <nav class="navbar navbar-expand-lg navbar-dark py-3 border-bottom border-secondary">
     <div class="container">
@@ -11,42 +13,44 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav m-auto gap-md-4 gap-2 mb-3 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link fs-md-5 active" aria-current="page" href="{% url 'home' %}">Home</a>
+                    <a class="nav-link fs-md-5 active" aria-current="page" href="{% url 'home' %}">{% translate "Home" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fs-md-5" href="{% url 'info:about_us' %}">About</a>
+                    <a class="nav-link fs-md-5" href="{% url 'info:about_us' %}">{% translate "About" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fs-md-5" href="{% url 'blog:post_list' %}">Blog</a>
+                    <a class="nav-link fs-md-5" href="{% url 'blog:post_list' %}">{% translate "Blog" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fs-md-5" href="{% url 'workshop:workshop_list' %}">WorkShops</a>
+                    <a class="nav-link fs-md-5" href="{% url 'workshop:workshop_list' %}">{% translate "WorkShops" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fs-md-5" href="{% url 'info:contact_us' %}">Contact Us</a>
+                    <a class="nav-link fs-md-5" href="{% url 'info:contact_us' %}">{% translate "Contact Us" %}</a>
                 </li>
             </ul>
             <div class="dropdown">
                 <button class="btn dropdown-toggle text-white shadow-none" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-user"></i>
+                    <i class="fa-solid fa-user me-2"></i>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-dark rounded-3" style="background-color: #222; border: 1px solid #F40612;" aria-labelledby="dropdownMenuButton1">
                     {% if request.user.is_authenticated %}
-                    <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">Log Out</a></li>
+                    <p class="px-3 py-2 m-0" style="border-bottom: 1px solid #F40612;">Hello, {{ request.user.username }}</p>
+                    <li><a class="dropdown-item" href="{% url 'accounts:logout' %}">{% translate "Log Out" %}</a></li>
                     {% if request.user.is_staff %}
-                    <li><a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a></li>
+                    <li><a class="dropdown-item" href="{% url 'admin:index' %}">{% translate "Admin" %}</a></li>
                     {% endif %}
                     {% if request.user.profile %}
-                    <li><a class="dropdown-item" href="{% url 'accounts:profile' %}">Profile</a></li>
+                    <li><a class="dropdown-item" href="{% url 'accounts:profile' %}">{% translate "Profile" %}</a></li>
                     {% endif %}
                     {% else %}
-                    <li><a class="dropdown-item" href="{% url 'accounts:login' %}">Log In</a></li>
-                    <li><a class="dropdown-item" href="{% url 'accounts:registration' %}">Sign Up</a></li>
+                    <li><a class="dropdown-item" href="{% url 'accounts:login' %}">{% translate "Log In" %}</a></li>
+                    <li><a class="dropdown-item" href="{% url 'accounts:registration' %}">{% translate "Sign Up" %}</a></li>
                     {% endif %}
                 </ul>
               </div>
             <button class="search btn border-0 bg-transparent fs-5 text-white me-2 shadow-none" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-magnifying-glass"></i></button>
-            <a href="#" class="text-decoration-none fw-bold px-4 py-2 rounded-3 primary-color text-white">Contact Us</a>
+            {% include 'base/trans.html' %}
+            <a href="#" class="text-decoration-none fw-bold px-4 py-2 rounded-3 primary-color text-white">{% translate "Contact Us" %}</a>
         </div>
     </div>
 </nav>

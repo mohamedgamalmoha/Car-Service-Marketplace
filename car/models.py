@@ -6,36 +6,47 @@ from accounts.models import Customer
 
 
 class Brand(models.Model):
-    name = models.CharField("Name", max_length=40, null=True)
-    image = models.ImageField("Logo", upload_to='brands/', null=True)
-    created = models.DateTimeField(auto_now_add=True, null=True)
-    updated = models.DateTimeField(auto_now=True, null=True)
+    name = models.CharField(max_length=40, null=True, verbose_name=_("Name"))
+    image = models.ImageField(upload_to='brands/', null=True, verbose_name=_("Logo"))
+    created = models.DateTimeField(auto_now_add=True, null=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, null=True, verbose_name=_("Updated"))
+
+    class Meta:
+        verbose_name = _('Brand')
+        verbose_name_plural = _('Brands')
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
     def show_image(self, width: int = 150, height: int = 100):
         url = self.image.url
         return mark_safe(f'<a href="{url}"> <img src="{url}" width="{width}" height={height} /></a>')
+    show_image.short_description = _("Show Image")
 
 
 class Car(models.Model):
-    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, related_name='cars', null=True)
-    brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, related_name='cars', null=True)
-    model = models.CharField("Model", max_length=40, blank=True, null=True)
-    number = models.CharField("Car Number", max_length=40, blank=True, null=True)
-    model_year = models.DateField("Model Year", null=True)
-    mileage = models.IntegerField(_("Mileage"), null=True, help_text=_("The number of miles or the average distance that a vehicle can travel on a specified quantity of fuel"))
-    last_oil_change_date = models.DateField(_("Last Oil Change Date"), null=True, help_text=_("When did the last oil change happen?"))
-    last_maintenance_date = models.DateField(_("Last Maintenance Date"), null=True, help_text=_("When did the last maintenance happen?"))
-    last_maintenance_details = models.TextField(_("Last Maintenance Details"), null=True, help_text=_("Tell us more about what happened in the last maintenance"))
-    color = models.CharField("Color", default='#000000', max_length=20)
-    created = models.DateTimeField(auto_now_add=True, null=True)
-    updated = models.DateTimeField(auto_now=True, null=True)
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, related_name='cars', null=True, verbose_name=_("Customer"))
+    brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, related_name='cars', null=True, verbose_name=_("Brand"))
+    model = models.CharField(max_length=40, blank=True, null=True, verbose_name=_("Model"))
+    number = models.CharField(max_length=40, blank=True, null=True, verbose_name=_("Number"))
+    model_year = models.DateField(null=True, verbose_name=_("Model Year"))
+    mileage = models.IntegerField(null=True,
+                                  help_text=_("The number of miles or the average distance that a vehicle can travel on "
+                                              "a specified quantity of fuel"),
+                                  verbose_name=_("Mileage"))
+    last_oil_change_date = models.DateField(null=True, help_text=_("When did the last oil change happen?"),
+                                            verbose_name=_("Last Oil Change Date"))
+    last_maintenance_date = models.DateField(null=True, help_text=_("When did the last maintenance happen?"),
+                                             verbose_name=_("Last Maintenance Date"))
+    last_maintenance_details = models.TextField(null=True, help_text=_("Tell us more about what happened in the last maintenance"),
+                                                verbose_name=_("Last Maintenance Details"))
+    color = models.CharField(default='#000000', max_length=20, verbose_name=_("Color"))
+    created = models.DateTimeField(auto_now_add=True, null=True, verbose_name=_("Created"))
+    updated = models.DateTimeField(auto_now=True, null=True, verbose_name=_("Updated"))
 
     class Meta:
-        verbose_name = 'Customer`s Car'
-        verbose_name_plural = 'Customers` Cars'
+        verbose_name = _('Customer`s Car')
+        verbose_name_plural = _('Customers` Cars')
 
     def __str__(self):
         return str(self.model)
