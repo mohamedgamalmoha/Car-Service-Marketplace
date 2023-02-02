@@ -174,7 +174,7 @@ class ReportIssue(models.Model):
     updated = models.DateTimeField(auto_now=True, verbose_name=_("Updated"))
 
     def __str__(self):
-        return self.name
+        return self.title
 
     class Meta:
         verbose_name = _('Report Issue')
