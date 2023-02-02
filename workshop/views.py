@@ -6,8 +6,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django_filters.views import FilterView
 
 from .filters import WorkShopFilter
-from accounts.mixins import CustomerAuthMixIn
 from accounts.models import UserRole
+from accounts.mixins import CustomerAuthMixIn
 from .models import WorkShop, Rate, Comment, ReportIssue
 from .forms import RateForm, CommentForm, ReportIssueForm
 
@@ -17,7 +17,7 @@ class WorkShopListView(FilterView):
     filterset_class = WorkShopFilter
     queryset = WorkShop.objects.active()
     template_name = 'workshop/workshop/list.html'
-    paginate_by = 2
+    paginate_by = 10
 
 
 class WorkShopDetailView(DetailView):
