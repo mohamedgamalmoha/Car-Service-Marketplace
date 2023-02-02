@@ -20,6 +20,4 @@ def modify_url(value: str):
 @register.filter(name='is_current_url')
 def check_current_url(value_1: str, value_2: str):
     url_1, url_2 = modify_url(value_1), modify_url(value_2)
-    print(url_1)
-    print(url_2)
     return url_1 == url_2
