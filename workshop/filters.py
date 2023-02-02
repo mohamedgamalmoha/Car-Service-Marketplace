@@ -50,5 +50,6 @@ class WorkShopFilter(django_filters.FilterSet):
 
     def search_filter(self, queryset, name, value):
         return queryset.filter(
-            models.Q(title__icontains=value) | models.Q(description__icontains=value)
+            models.Q(name_en__icontains=value) | models.Q(name_ar__icontains=value) |
+            models.Q(description_en__icontains=value) | models.Q(description_ar__icontains=value)
         )

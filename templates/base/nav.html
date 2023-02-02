@@ -1,5 +1,6 @@
 {% load static %}
 {% load i18n %}
+{% load url_utils %}
 
 <!-- NavBar Section -->
 <nav class="navbar navbar-expand-lg navbar-dark py-3 border-bottom border-secondary">
@@ -13,19 +14,24 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav m-auto gap-md-4 gap-2 mb-3 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link fs-md-5 active" aria-current="page" href="{% url 'home' %}">{% translate "Home" %}</a>
+                    {% url 'home' as url %}
+                    <a class="nav-link fs-md-5 {% if request.path|is_current_url:url %}active{% endif %}" aria-current="page" href="{{ url }}">{% translate "Home" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fs-md-5" href="{% url 'info:about_us' %}">{% translate "About" %}</a>
+                    {% url 'info:about_us' as url %}
+                    <a class="nav-link fs-md-5 {% if request.path|is_current_url:url %}active{% endif %}" href="{{ url }}">{% translate "About" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fs-md-5" href="{% url 'blog:post_list' %}">{% translate "Blog" %}</a>
+                    {% url 'blog:post_list' as url %}
+                    <a class="nav-link fs-md-5 {% if request.path|is_current_url:url %}active{% endif %}" href="{{ url }}">{% translate "Blog" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fs-md-5" href="{% url 'workshop:workshop_list' %}">{% translate "WorkShops" %}</a>
+                    {% url 'workshop:workshop_list' as url %}
+                    <a class="nav-link fs-md-5 {% if request.path|is_current_url:url %}active{% endif %}" href="{{ url }}">{% translate "WorkShops" %}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fs-md-5" href="{% url 'info:contact_us' %}">{% translate "Contact Us" %}</a>
+                    {% url 'info:contact_us' as url %}
+                    <a class="nav-link fs-md-5 {% if request.path|is_current_url:url %}active{% endif %}" href="{{ url }}">{% translate "Contact Us" %}</a>
                 </li>
             </ul>
             <div class="dropdown">
@@ -60,11 +66,12 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content p-3" style="background-color: #222; max-width: 600px;">
             <div class="position-relative">
-                <input type="text" class="w-100 px-3 py-2 text-light bg-transparent rounded-3"
-                       style="border: 1px solid #F40612;" placeholder="Search Here">
-                <button class="btn border-0 bg-transparent position-absolute end-0 text-white fs-5 shadow-none">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
+                <form action="{% url 'workshop:workshop_list' %}" method="GET">
+                    <input type="text" name="search" class="w-100 px-3 py-2 text-light bg-transparent rounded-3" style="border: 1px solid #F40612;" placeholder="Search Here">
+                    <button class="btn border-0 bg-transparent position-absolute end-0 text-white fs-5 shadow-none" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
             </div>
         </div>
     </div>

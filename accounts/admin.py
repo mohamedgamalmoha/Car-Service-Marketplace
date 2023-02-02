@@ -85,7 +85,7 @@ class CustomUserAdmin(UserAdmin):
         return inlines
 
 
-admin.site.unregister(SocialToken)
-admin.site.unregister(SocialAccount)
+# admin.site.unregister(SocialToken)
+# admin.site.unregister(SocialAccount)
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(CustomerProfile, CustomerProfileAdmin)
