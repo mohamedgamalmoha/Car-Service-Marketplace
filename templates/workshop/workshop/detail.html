@@ -38,11 +38,15 @@
                 ({{ workshop.avg_rate }}) {% translate "avg rating" %} | {{ workshop.count_rate }} {% translate "ratings" %}
             </div>
             <div>{{ workshop.description|safe }}</div>
+            {% if request.user.is_authenticated and request.user.role == user_role.CUSTOMER %}
             <form method="POST" action="{% url 'booking:create_without_discount' %}">
                 {% csrf_token %}
                 <input type="hidden" value="{{ workshop.id }}" name="workshop">
                 <input type="submit" value="{% translate 'Book Now' %}" class="primary-color text-decoration-none rounded-3 px-4 py-2 fw-bold text-white d-flex" style="width: fit-content;">
             </form>
+            {% else %}
+            <button class="primary-color text-decoration-none rounded-3 px-4 py-2 fw-bold text-white d-flex unAuthButton" style="width: fit-content;" data-bs-toggle="modal" data-bs-target="#unAuthMessage">{% translate 'Book Now' %}</button>
+            {% endif %}
         </div>
     </div>
 </section>
@@ -57,7 +61,7 @@
             {% for brand in workshop.brands.all %}
             <div style="background-color: #222222;" class="swiper-slide d-flex flex-column align-items-center text-center rounded-3 py-2 px-5 justify-content-center ">
                 <img src="{{ brand.image.url }}" width="100" alt="about">
-                <p class="text-muted m-0">Model no. <br>
+                <p class="text-muted m-0">{% translate "Model Year" %}<br>
                     {{ workshop.model_year_start|date:"M Y"}} - {{ workshop.model_year_end|date:"M Y"}} </p>
             </div>
             {% endfor %}
@@ -86,7 +90,7 @@
                 <i class="fa-solid fa-car fs-1 active"></i>
                 <div>
                     <p class="fs-5 fw-bold text-white mb-1">{{ service.name }}</p>
-                    <p class="text-muted">{{ service.description }}</p>
+                    <p class="text-muted" style="text-align: justify; text-justify: inter-word;">{{ service.description }}</p>
                 </div>
             </div>
         </div>
@@ -108,13 +112,17 @@
                 </p>
                 <p class="fw-bold text-white fs-5 m-0 pt-3">{{ discount.get_type_display }}</p>
                 <p class="text-light m-0">{% translate "Discount of" %} {{ discount.service }} {% translate "service" %}</p>
+                {% if request.user.is_authenticated and request.user.role == user_role.CUSTOMER %}
                 <form  method="POST" action="{% url 'booking:create_with_discount' %}">
                     {% csrf_token %}
                     <input type="hidden" value="{{ discount.workshop.id }}" name="workshop">
                     <input type="hidden" value="{{ discount.service.id }}" name="service">
                     <input type="hidden" value="{{ discount.id }}" name="discount">
-                    <input type="submit" value="Book Now" class="px-4 py-2 primary-color fw-bold text-decoration-none text-white d-inline-block mt-3">
+                    <input type="submit" value="{% translate 'Book Now' %}" class="px-4 py-2 primary-color fw-bold text-decoration-none text-white d-inline-block mt-3">
                 </form>
+                {% else %}
+                <button class="primary-color text-decoration-none rounded-3 px-4 py-2 fw-bold text-white d-flex unAuthButton" style="width: fit-content;" data-bs-toggle="modal" data-bs-target="#unAuthMessage">{% translate 'Book Now' %}</button>
+                {% endif %}
             </div>
             {% endfor %}
         </div>
@@ -200,4 +208,37 @@
     </div>
     {% endfor %}
 </section>
+
+<!-- UnAuthMessage Section -->
+<div class="modal fade" id="unAuthMessage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content p-3" style="background-color: #222; max-width: 600px;">
+            <div class="position-relative" style="border: 1px solid #F40612;">
+                <div class="row">
+                    <p class="p-3 m-0 text-light text-center">
+                        {% translate "You are not logged in right now, you have to log in or send us through WhatsApp in order to book" %}
+                    </p>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="p-3 gap-3 d-flex flex-column justify-content-center align-items-center" style="">
+                            <a href="{% url 'accounts:login' %}">
+                                <i class="fa-solid fa-right-to-bracket" style="font-size: 3rem; color: white;"></i>
+                            </a>
+                            <p class="text-muted">{% translate "Register Now" %}</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="p-3 gap-3 d-flex flex-column justify-content-center align-items-center" style="">
+                            <a href="{{ main_info.whatsapp_link }}" target="_blank">
+                                <i class="fa-brands fa-whatsapp" style="font-size: 3rem; border-radius: 50%; color: white;"></i>
+                            </a>
+                            <p class="text-muted">{% translate "Chat WhatsApp" %}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

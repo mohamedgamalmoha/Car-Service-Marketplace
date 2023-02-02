@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-01-30 20:46+0200\n"
+"POT-Creation-Date: 2023-02-02 22:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,7 +51,7 @@ msgstr "في السبعينيات"
 msgid "Accounts"
 msgstr "الحسابات الشخصية"
 
-#: .\accounts\models.py:13 .\core\settings.py:240 .\templates\base\nav.html:40
+#: .\accounts\models.py:13 .\core\settings.py:240 .\templates\base\nav.html:48
 msgid "Admin"
 msgstr "مدير"
 
@@ -138,7 +138,7 @@ msgstr "ملفات شخصيه"
 msgid "Show Image"
 msgstr "عرض الصورة"
 
-#: .\blog\apps.py:8 .\templates\base\nav.html:22
+#: .\blog\apps.py:8 .\templates\base\nav.html:28
 msgid "Blog"
 msgstr "مدونة او مذكرة"
 
@@ -427,6 +427,7 @@ msgid "Update Booking"
 msgstr "تحديث الحجز"
 
 #: .\car\admin.py:10 .\car\models.py:32
+#: .\templates\workshop\workshop\detail.html:64
 msgid "Model Year"
 msgstr "سنة الصنع"
 
@@ -444,7 +445,7 @@ msgid "Brand"
 msgstr "ماركة"
 
 #: .\car\models.py:16 .\templates\home.html:87
-#: .\templates\workshop\workshop\detail.html:52 .\workshop\models.py:52
+#: .\templates\workshop\workshop\detail.html:56 .\workshop\models.py:52
 msgid "Brands"
 msgstr "العلامات التجارية"
 
@@ -511,7 +512,7 @@ msgstr "إنجليزي"
 msgid "Arabic"
 msgstr "عربى"
 
-#: .\core\settings.py:248 .\templates\base\nav.html:16
+#: .\core\settings.py:248 .\templates\base\nav.html:20
 #: .\templates\workshop\workshop\detail.html:11
 msgid "Home"
 msgstr "الصفحة الرئيسية"
@@ -622,8 +623,8 @@ msgstr "موضوع"
 msgid "Message"
 msgstr "رسالة"
 
-#: .\info\models.py:113 .\info\models.py:114 .\templates\base\nav.html:28
-#: .\templates\base\nav.html:53
+#: .\info\models.py:113 .\info\models.py:114 .\templates\base\nav.html:36
+#: .\templates\base\nav.html:61
 msgid "Contact Us"
 msgstr "اتصل بنا"
 
@@ -653,15 +654,15 @@ msgstr "صورة الصفحة الرئيسية"
 msgid "Home Page Images"
 msgstr "صور الصفحة الرئيسية"
 
-#: .\templates\accounts\login.html:12 .\templates\base\nav.html:46
+#: .\templates\accounts\login.html:12 .\templates\base\nav.html:54
 msgid "Log In"
 msgstr "تسجيل الدخول"
 
-#: .\templates\accounts\login.html:18 .\templates\accounts\register.html:19
+#: .\templates\accounts\login.html:18 .\templates\accounts\register.html:20
 msgid "Google"
 msgstr "جوجل"
 
-#: .\templates\accounts\login.html:19 .\templates\accounts\register.html:20
+#: .\templates\accounts\login.html:19 .\templates\accounts\register.html:21
 #: .\templates\base\footer.html:16
 msgid "Facebook"
 msgstr "فيسبوك"
@@ -734,8 +735,8 @@ msgstr "سجل النشاطات"
 msgid "at"
 msgstr "في"
 
-#: .\templates\accounts\register.html:12 .\templates\accounts\register.html:24
-#: .\templates\base\nav.html:47
+#: .\templates\accounts\register.html:13 .\templates\accounts\register.html:25
+#: .\templates\base\nav.html:55
 msgid "Sign Up"
 msgstr "اشتراك"
 
@@ -749,7 +750,7 @@ msgstr "لوحة الادارة"
 
 #: .\templates\base\footer.html:10
 msgid "We are a group of expert and gifted specialists in every."
-msgstr "تطوير كلمة السر"
+msgstr "نحن مجموعة من المتخصصين الخبراء والموهوبين في كل مكان."
 
 #: .\templates\base\footer.html:11
 msgid "Opens at:"
@@ -791,21 +792,26 @@ msgstr "انستغرام"
 msgid "Twitter"
 msgstr "تويتر"
 
-#: .\templates\base\nav.html:19
+#: .\templates\base\nav.html:24
 msgid "About"
 msgstr "معلومات عنا"
 
-#: .\templates\base\nav.html:25 .\workshop\models.py:67
+#: .\templates\base\nav.html:32 .\workshop\models.py:67
 msgid "WorkShops"
 msgstr "ورش عمل"
 
-#: .\templates\base\nav.html:38
+#: .\templates\base\nav.html:46
 msgid "Log Out"
 msgstr "تسجيل خروج"
 
-#: .\templates\base\nav.html:43
+#: .\templates\base\nav.html:51
 msgid "Profile"
 msgstr "حساب تعريفي"
+
+#: .\templates\base\nav.html:72 .\workshop\filters.py:31
+#: .\workshop\filters.py:40
+msgid "Search"
+msgstr "بحث"
 
 #: .\templates\base\pagination.html:10 .\templates\base\pagination.html:13
 msgid "Previous"
@@ -858,11 +864,14 @@ msgstr "المغامرة"
 msgid "starts with a safe ride - book yours today!"
 msgstr "تبدأ برحلة آمنة - احجز لك اليوم!"
 
-#: .\templates\home.html:34 .\templates\workshop\workshop\detail.html:44
+#: .\templates\home.html:34 .\templates\workshop\workshop\detail.html:45
+#: .\templates\workshop\workshop\detail.html:48
+#: .\templates\workshop\workshop\detail.html:121
+#: .\templates\workshop\workshop\detail.html:124
 msgid "Book Now"
 msgstr "احجز الآن"
 
-#: .\templates\home.html:51 .\templates\workshop\workshop\detail.html:110
+#: .\templates\home.html:51 .\templates\workshop\workshop\detail.html:114
 msgid "Discount of"
 msgstr "خصم من"
 
@@ -984,41 +993,55 @@ msgstr "متوسط التقييم"
 msgid "ratings"
 msgstr "تقييمات"
 
-#: .\templates\workshop\workshop\detail.html:73
+#: .\templates\workshop\workshop\detail.html:77
 msgid "Video"
 msgstr "فيديو"
 
-#: .\templates\workshop\workshop\detail.html:82
+#: .\templates\workshop\workshop\detail.html:86
 msgid "Our Services"
 msgstr "خدماتنا"
 
-#: .\templates\workshop\workshop\detail.html:99
+#: .\templates\workshop\workshop\detail.html:103
 msgid "Discount / Offers"
 msgstr "الخصم / العروض"
 
-#: .\templates\workshop\workshop\detail.html:107
+#: .\templates\workshop\workshop\detail.html:111
 msgid "Min"
 msgstr "الحد الأدنى"
 
-#: .\templates\workshop\workshop\detail.html:107
+#: .\templates\workshop\workshop\detail.html:111
 msgid "Off"
 msgstr "إيقاف"
 
-#: .\templates\workshop\workshop\detail.html:107
+#: .\templates\workshop\workshop\detail.html:111
 msgid "Free"
 msgstr "حر"
 
-#: .\templates\workshop\workshop\detail.html:110
+#: .\templates\workshop\workshop\detail.html:114
 msgid "service"
 msgstr "الخدمات"
 
-#: .\templates\workshop\workshop\detail.html:132
+#: .\templates\workshop\workshop\detail.html:140
 msgid "Location"
 msgstr "موقع"
 
-#: .\templates\workshop\workshop\detail.html:155
+#: .\templates\workshop\workshop\detail.html:163
 msgid "Give a feedback:"
 msgstr "تقديم ملاحظات:"
+
+#: .\templates\workshop\workshop\detail.html:219
+msgid ""
+"You are not logged in right now, you have to log in or send us through "
+"WhatsApp in order to book"
+msgstr "أنت لم تسجل الدخول الآن ، يجب عليك تسجيل الدخول أو إرسالنا عبر واتساب للحجز"
+
+#: .\templates\workshop\workshop\detail.html:228
+msgid "Register Now"
+msgstr "سجل الان"
+
+#: .\templates\workshop\workshop\detail.html:236
+msgid "Chat WhatsApp"
+msgstr "كلمنا من خلال واتساب"
 
 #: .\templates\workshop\workshop\list.html:23
 msgid "Choose Brand"
@@ -1047,10 +1070,6 @@ msgstr "الإحصائيات"
 #: .\workshop\filters.py:17
 msgid "Rate (descending)"
 msgstr "تقيم (عكسي)"
-
-#: .\workshop\filters.py:31
-msgid "Search"
-msgstr "بحث"
 
 #: .\workshop\models.py:16
 #, python-format

@@ -2,6 +2,8 @@
 {% load i18n %}
 {% load url_utils %}
 
+{% get_current_language as LANGUAGE_CODE %}
+
 <!-- NavBar Section -->
 <nav class="navbar navbar-expand-lg navbar-dark py-3 border-bottom border-secondary">
     <div class="container">
@@ -67,8 +69,8 @@
         <div class="modal-content p-3" style="background-color: #222; max-width: 600px;">
             <div class="position-relative">
                 <form action="{% url 'workshop:workshop_list' %}" method="GET">
-                    <input type="text" name="search" class="w-100 px-3 py-2 text-light bg-transparent rounded-3" style="border: 1px solid #F40612;" placeholder="Search Here">
-                    <button class="btn border-0 bg-transparent position-absolute end-0 text-white fs-5 shadow-none" type="submit">
+                    <input type="text" name="search" class="w-100 px-3 py-2 text-light bg-transparent rounded-3" style="border: 1px solid #F40612;" placeholder="{% translate 'Search' %}">
+                    <button class="btn border-0 bg-transparent position-absolute text-white fs-5 shadow-none" type="submit"  style="{% if LANGUAGE_CODE == "ar" %}left: 0;{% else %}right: 0;{% endif %}">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </form>

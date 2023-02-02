@@ -37,7 +37,7 @@ class WorkShopFilter(django_filters.FilterSet):
         super().__init__(*args, **kwargs)
         # Customize Search Field
         self.form.fields['search'].widget.attrs['class'] = 'bg-transparent px-4 py-1 text-white w-100'
-        self.form.fields['search'].widget.attrs['placeholder'] = "Search"
+        self.form.fields['search'].widget.attrs['placeholder'] = _("Search")
         self.form.fields['search'].widget.attrs['style'] = "border:none;border-bottom: 1px solid #F40612;"
         # Customize Ordering Field
         self.form.fields['ordering'].widget.attrs['class'] = 'form-control'
