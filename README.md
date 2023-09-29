@@ -102,4 +102,4 @@ The admin write a post about specific topic, opening a field of discussion. User
 Contributions are welcome! Please open an issue or submit a pull request if you would like to contribute code changes or suggest new features.
 
 ## License
-This project is licensed under [MIT License](https://opensource.org/licenses/MIT).
+This project is licensed under [Educational Use License](LICENSE).
